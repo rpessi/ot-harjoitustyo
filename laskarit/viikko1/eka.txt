@@ -1,0 +1,20 @@
+Tehdään pyydetty muutos tekstitiedostoon. Aurinko paistaa, ei muuta raportoitavaa.
+Euroalueen valtionlainojen markkinakorot ovat laskeneet jälleen keskiviikkona voimakkaasti. 
+Pankkiosakkeiden sukellus on saanut sijoittajat siirtämään rahojaan turvallisina sijoituskohteina 
+pidettyihin valtionlainoihin.
+
+Korot ovat laskeneet etenkin pitkien korkojen lyhyemmässä päässä. Saksan kaksivuotisen valtionlainan 
+markkinakorko oli iltapäivällä painunut 30 korkopistettä 2,61 prosenttiin.
+
+Euroalueella yleisesti viitelainana käytettävä Saksan 10 vuoden valtionlainan korko oli 
+laskenut 20 korkopistettä 2,24 prosenttiin. Normaalina päivinä valtionlainojen korot muuttuvat 
+päivässä muutaman korkopisteen.
+
+Tehtaan kohtaloon kietoutuu koko Suomen ilmastotavoite. SSAB:n Raahen terästehdas, entiseltä nimeltään 
+Rautaruukki, on ylivoimaisesti suurin yksittäinen saastuttaja. Se puskee ilmaan lähes yhdeksän 
+prosenttia Suomen päästöistä.
+
+Tehtaan päästöt ovat lähes yhtä suuret kuin Suomen kaikkien henkilöautojen päästöt yhteensä. Jos tehtaan 
+saasteista ei päästä eroon, Suomi ei ole vuonna 2035 hiilineutraali.
+
+Vielä pieni muutos siinä toivossa, että saadaan tämä tiedosto committiin, kun ei muuten kelpaa.

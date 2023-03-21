@@ -1,0 +1,83 @@
+commit 41327545d88e3f9e7d15ec3ea8730450c04d5f83
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Tue Mar 21 17:11:27 2023 +0200
+
+    Forcepushissa tipahtaneet tiedostot, yritetään saada Githubiin.
+
+commit c7414ca8c766abb00a3097f7118abaa344b939b7
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 16:52:31 2023 +0200
+
+    tiedoston poisto ja nimenvaihto
+
+commit 4dbcf9d8827d21eb6e3866e3732dea50310db89f
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 16:48:36 2023 +0200
+
+    lisätään alikansion tiedostot
+
+commit fb2087f1eb469e0f41413a81f88a102a44fff282
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 16:40:16 2023 +0200
+
+    vaihdettiin tiedoston nimeä
+
+commit 329acda627bbf407ba6b0ff5282718ff84798a14
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 16:37:55 2023 +0200
+
+    En ole nyt ollenkaan varma meneekö tämä oikein, ohjeet on sekavat ja tuntuvat ristiriitaisilta.
+
+commit 8b24f6f7c7273a211b5bda7d6ecce84bd943a03e
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 16:35:26 2023 +0200
+
+    Lisätään toinen.txt uudestaan
+
+commit cf41eabc537e5e097cf1a04dcffc06f23597e7d1
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 16:33:25 2023 +0200
+
+    Poistettiin toinen.txt
+
+commit 7b0d6bcde6e6c5283b2c29d6617338ebfde73b67
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 16:30:39 2023 +0200
+
+    Poistettiin tekstiä, lisättiin tekstiä
+
+commit 789edcc8c323adcdd70eecc8ec339cc95520b5d4
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 16:27:11 2023 +0200
+
+    Lisättiin tekstiä, committoidaan.
+
+commit 4fa77d056c28c536faf5c360758b94c7dc53db07
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 15:56:34 2023 +0200
+
+    Committoidaan alikansioon tehty file.
+
+commit 10fc61bb9cde84aac199d081e0b5f94fba12f586
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 15:53:47 2023 +0200
+
+    Ja taas unohdettiin laittaa committiin otsikko mukaan, mutta käyhän se täällä Nanossakin.
+
+commit 4cf34f52e227d743b33cece6024f429d297543f7
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 15:51:42 2023 +0200
+
+    Lisättiin kolmas tiedosto
+
+commit b9e1b14d5ad26f0aebd8a737ef914025f9790784
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 15:48:58 2023 +0200
+
+    muutos ja lisäys
+
+commit 8e22057f6898c9840392954e0cba7319a248085d
+Author: Riitta Pessi <riitta@pessi.fi>
+Date:   Wed Mar 15 15:44:49 2023 +0200
+
+    tiedosto.txt luotu
