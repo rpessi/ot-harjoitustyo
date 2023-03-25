@@ -6,7 +6,7 @@ class Kassapaate:
 
     def syo_edullisesti_kateisella(self, maksu):
         if maksu >= 240:
-            self.kassassa_rahaa = self.kassassa_rahaa + 240
+            self.kassassa_rahaa += 240
             self.edulliset += 1
             return maksu - 240
         else:
@@ -14,7 +14,7 @@ class Kassapaate:
 
     def syo_maukkaasti_kateisella(self, maksu):
         if maksu >= 400:
-            self.kassassa_rahaa = self.kassassa_rahaa + 400
+            self.kassassa_rahaa += 400
             self.maukkaat += 1
             return maksu - 400
         else:
