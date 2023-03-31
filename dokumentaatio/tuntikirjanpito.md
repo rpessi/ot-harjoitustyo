@@ -6,4 +6,5 @@
 | 17.3. | 1      | Sovelluskehitys | Tietokantarakenteen suunnittelua |
 | 25.3. | 1,25   | Dokumentaatio   | Alustava vaatimusmäärittelydokumentti |
 | 25.3. | 1,5    | Sovelluskehitys | TkInteriin tutustumista |
+| 29.3. | 5,25   | Sovelluekehitys | Käyttöliittymän rakentelua |
  
