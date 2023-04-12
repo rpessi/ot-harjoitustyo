@@ -1,4 +1,4 @@
-from ..services.tk_service import TKService
+from services.tk_service import TKService
 
 # simppeli tekstikäyttöliittymä testailua varten
 def get_file():
@@ -30,12 +30,17 @@ def check_file(file):  # onko tän paikka täällä, oisko joku muu paikka parem
 
 def process_file(file, name):  # ottaa tuplen (file, name) ja lähettää service-kerrokseen
     print("tultiin tiedoston prosessointiin")
-    account = TKService(file, name)
+    account = TKService(name, file)
+    account.summary(account.path)
+    return account
 
 
-if __name__ == "__main__":
+def run():
     file_path = "/home/rpessi/ohte/src/tests/Nordea_test_file.csv"
     # print(check_file(file_path))
     file, name = get_file()
     print(file, name)
-    process_file(file, name)
+    account = process_file(file, name)
+    account.choose_offset_account()
+    
+    

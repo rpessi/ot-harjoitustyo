@@ -12,7 +12,7 @@ class TKService:
         #self.total_expense = 0 #onko turhat täällä?
         self.offset_account_in = {} #vastatilit panoille
         self.offset_account_out = {} #vastatilit otoille
-        print("tultiin inittiin")
+        print("tultiin TKServicen inittiin")
 
     # tää on vähän kertakäyttöisessä asennossa vielä
     def summary(self, info):  # 3. viikon tilapäistoiminto testauksia varten, Nordean tiliote
@@ -23,7 +23,6 @@ class TKService:
             # date = line_list[0] #ei ole tässä vaiheessa vielä käytössä
             amount = float(line_list[1].replace(",", "."))
             name = line_list[5]
-            # amount = float(amount.replace(",", "."))
             if amount < 0:
                 if name not in self.expense:
                     self.expense[name] = 0
@@ -33,8 +32,7 @@ class TKService:
                 if name not in self.income:
                     self.income[name] = 0
                 self.income[name] += float(amount)
-
-        #return ((self.income, self.expense))  # tarviiko ees palauttaa mitään?
+        print("päästiin summaryn loppuun")
 
     def print_summary(self, min_exp=100):
         self.total_misc_exp = 0
@@ -64,31 +62,7 @@ class TKService:
         print(f"Menot yhteensä: {-self.total_expense:.2f}")
         print()
 
-    def choose_offset_account(self): #valitaan tilitapahtumille vastatilit
-        accounts = [0, "Tulot", "Menot", "Oma tili", "Lainat"]
-        print("Luokitellaan tilille tulevat tapahtumat.")
-        print("Voit kirjata menoihin esim. irtaimiston myynnit.")
-        print()
-        for item in self.income.items():
-            while True: #mieti uusiksi tilanteessa, kun aiempia tapahtumia on jo luokiteltu
-                print(f"Anna vastatatili tapahtumalle {item[0]}: {item[1]:.2f}.")
-                offset = input("Vastatili (1: Tulot, 2: Menot, 3: Oma tili, 4: Lainat): ")
-                if offset in ["1", "2", "3", "4"] and item[0] not in self.offset_account_in:
-                    self.offset_account_in[item[0]] = accounts[int(offset)]
-                    break
-        print("Luokitellaan tililtä lähtevät tapahtumat.")
-        print("Voit kirjata tuloihin esim. jälkiverot.")
-        print()
-        for item in self.expense.items():
-            while True: #mieti uusiksi tilanteessa, kun aiempia tapahtumia on jo luokiteltu
-                print(f"Anna vastatatili tapahtumalle {item[0]}: {item[1]:.2f}.")
-                offset = input("Vastatili (1: Tulot, 2: Menot, 3: Oma tili, 4: Lainat): ")
-                if offset in ["1", "2", "3", "4"] and item[0] not in self.offset_account_out:
-                    self.offset_account_out[item[0]] = accounts[int(offset)]
-                    break #jää jumittamaan viimeiseen kohtaan, miksi? 
-        print("Kaikki tapahtumat on luokiteltu.")
-        print(self.offset_account_in)
-        print(self.offset_account_out)
+    
 
 #lainatapahtumien pilkkominen
 
@@ -102,5 +76,5 @@ if __name__ == "__main__":
     sum_up = tili.summary(DATA)
     tili.print_summary()
     tili.print_summary(min_exp=200)
-    tili.choose_offset_account()
+    #tili.choose_offset_account()
 

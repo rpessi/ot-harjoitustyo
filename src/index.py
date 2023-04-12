@@ -1,6 +1,10 @@
 import cowsay
+from ui.tui_for_early_tests import run
+
 cowsay.cow("Hello from index.py!")
-print()
-print("Hommat on pahasti levällään ja ohjelmantynkä palasina.")
-print("En osaa täältä vielä mitään käynnistää o_O")
-print()
+
+def main():
+    run()
+
+if __name__ == "__main__":
+    main()
