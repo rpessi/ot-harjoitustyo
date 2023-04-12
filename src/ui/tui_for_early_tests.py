@@ -21,7 +21,7 @@ def check_file(file):  # onko tän paikka täällä, oisko joku muu paikka parem
     except:
         return False
     if file[-4:] != ".csv":
-        print("if-lausekkeessa", file[-4:])
+        #print("if-lausekkeessa", file[-4:])
         return False
     else:
         # print("on .csv", file[-4:])

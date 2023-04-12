@@ -5,7 +5,7 @@ from services.tk_service import TKService
 class TestTKService(unittest.TestCase):
     def setUp(self):
         self.data = "src/tests/test_file.csv"
-        self.account = TKService("Nordea")
+        self.account = TKService("Nordea", self.data)
 
     def test_summary_counts_expenses_correctly(self):
         self.account.summary(self.data)
