@@ -6,5 +6,5 @@ Tämä on vasta tiiseri. Toimivaa sovellusta joudut vielä odottelemaan.
 
 - [Alustava vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 - [Työajan seuranta](./dokumentaatio/tuntikirjanpito.md)
-- [Changelog](.dokumentaatio/changelog.md)
+- [Changelog](./dokumentaatio/changelog.md)
 
