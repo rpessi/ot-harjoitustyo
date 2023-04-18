@@ -12,5 +12,6 @@ def save_account(self):
         else:
             new_line += self.offset_account_in[line[5]] + "\n"
         new_lines.append(new_line)
-    with open("repositories/account_data.csv", "a") as writefile:
+    print(new_lines)
+    with open("account_data.csv", "a") as writefile:
         writefile.writelines(new_lines)

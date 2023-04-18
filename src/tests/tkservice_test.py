@@ -31,5 +31,3 @@ class TestTKService(unittest.TestCase):
         misc2 = self.account.print_summary(min_exp=200)
         self.assertEqual(round(misc2, 2), -1326.47)
 
-    def test_save_data_adds_lines(self.account):
-

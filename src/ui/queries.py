@@ -1,5 +1,4 @@
 from services.tk_service import TKService
-#siirretty TKService-luokasta, ei mitään käryä miten tämän saa käyttökuntoon
 
 def choose_offset_account(self): #valitaan tilitapahtumille vastatilit
     accounts = [0, "Tulot", "Menot", "Oma tili", "Lainat"]
@@ -26,6 +25,7 @@ def choose_offset_account(self): #valitaan tilitapahtumille vastatilit
     print("Kaikki tapahtumat on luokiteltu.")
     print(self.offset_account_in)
     print(self.offset_account_out)
+
 #lainatapahtumien pilkkominen
 
 #menoluokkien tarkennus

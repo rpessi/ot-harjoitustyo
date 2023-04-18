@@ -1,6 +1,7 @@
 from services.tk_service import TKService
 import cowsay
 import ui.queries
+import repositories.save_data
 
 # simppeli tekstikäyttöliittymä testailua varten
 def get_file():
@@ -33,6 +34,7 @@ def process_file(file, name):  # ottaa tuplen (file, name) ja lähettää servic
     account = TKService(name, file)
     account.summary(account.path)
     ui.queries.choose_offset_account(account)
+    repositories.save_data.save_account(account)
     return account
 
 def settings():
@@ -51,7 +53,7 @@ def run():
             if choice == "1":
                 file, name = get_file()
                 account = process_file(file, name)
-            elif choice == "2":
+            elif choice == "2": #tähän kysymys, minkä tilin tiedot haetaan
                 account.print_summary()
             elif choice == "3":
                 exit()
