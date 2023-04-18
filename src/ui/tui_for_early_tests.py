@@ -3,7 +3,6 @@ import cowsay
 import ui.queries
 import repositories.save_data
 
-# simppeli tekstikäyttöliittymä testailua varten
 def get_file():
     while True:
         file = input(
@@ -15,22 +14,17 @@ def get_file():
             print("Tiedostoa ei löydy tai se ei ole csv-tiedosto.")
 
 def check_file(file):  # onko tän paikka täällä, oisko joku muu paikka parempi?
-    # print("päästiin check_file -funktioon")
-    # print(file)
     try:
         with open(file) as file_2:
             file_2.read()  # tehdään jotain, että filu menee kiinni, kai?
     except:
         return False
     if file[-4:] != ".csv":
-        #print("if-lausekkeessa", file[-4:])
         return False
     else:
-        # print("on .csv", file[-4:])
         return True
 
 def process_file(file, name):  # ottaa tuplen (file, name) ja lähettää service-kerrokseen
-    print("tultiin tiedoston prosessointiin")
     account = TKService(name, file)
     account.summary(account.path)
     ui.queries.choose_offset_account(account)
@@ -46,7 +40,7 @@ def run():
     while True: 
         cowsay.cow("Valitse toiminto!")
         print(f"1 - Lisää tiedosto") #ohjaa tapahtumien luokitteluun
-        print(f"2 - Tulosta yhteenveto")
+        print(f"2 - Tulosta yhteenveto (ohjelma kaatuu, jos tiedostoa ei ole annettu)")
         print(f"3 - Lopeta")
         choice = input("Valinta (anna numero, hyväksy enterillä): ")
         if choice in ["1", "2", "3"]:

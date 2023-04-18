@@ -23,8 +23,8 @@ def choose_offset_account(self): #valitaan tilitapahtumille vastatilit
                 self.offset_account_out[item[0]] = accounts[int(offset)]
                 break
     print("Kaikki tapahtumat on luokiteltu.")
-    print(self.offset_account_in)
-    print(self.offset_account_out)
+    #print(self.offset_account_in)
+    #print(self.offset_account_out)
 
 #lainatapahtumien pilkkominen
 

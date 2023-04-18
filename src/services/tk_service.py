@@ -10,7 +10,6 @@ class TKService:
         self.balance = {}
         self.offset_account_in = {} #vastatilit panoille / tilitapahtumien luokittelu
         self.offset_account_out = {} #vastatilit otoille / tilitapahtumien luokittelu
-        print("tultiin TKServicen inittiin")
 
     # cashflow, tää on vähän kertakäyttöisessä asennossa vielä
     def summary(self, info):  # 3. viikon tilapäistoiminto testauksia varten, Nordean tiliote
@@ -29,13 +28,11 @@ class TKService:
                 if line[5] not in self.money_in:
                     self.money_in[line[5]] = 0
                 self.money_in[line[5]] += float(amount)
-        print("päästiin summaryn loppuun")
 
     def print_summary(self, min_exp=100): #tilitapahtumat/kassavirta
         total_misc_exp = 0
         total_money_in = 0
         total_money_out = 0
-        print()
         print(f"Yhteenveto tilitapahtumista tililtä {self.name}")
         print()
         print("Tilillepanot")
@@ -56,5 +53,4 @@ class TKService:
         print()
         print(f"Panot yhteensä: {total_money_in:.2f}")
         print(f"Nostot yhteensä: {-total_money_out:.2f}")
-        print()
         return total_misc_exp
