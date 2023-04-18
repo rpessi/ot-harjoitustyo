@@ -9,15 +9,15 @@ yksi käyttäjä ja sovellus tulkitsee kaikki saamansa tiedot saman käyttäjän
 
 Sovelluksen toiminta pohjautuu käyttäjän antamaan CSV-muotoiseen tiedostoon, jossa on tilitapahtumat halutulta ajanjaksolta.
 Tämän pohjalta luodaan yhteistyössä käyttäjän kanssa tilikartta, joka palvelee käyttäjän tarpeita. Sovellus muodostaa
-tilitapahtumien pohjalta kassavirtalaskelman ja tuloslaskelman sekä taseen tilikauden päättyessä. 
+tilitapahtumien pohjalta kassavirtalaskelman (tehty) ja tuloslaskelman sekä taseen tilikauden päättyessä. 
 
 ## Perusversion tarjoama toiminnallisuus
 
-Ensimmäisessä vaiheessa toteutetaan versio, joka pyytää käyttäjältä Nordean tilitapahtumista muodostetun CSV-tiedoston.
+Ensimmäisessä vaiheessa toteutetaan versio, joka pyytää käyttäjältä Nordean tilitapahtumista muodostetun CSV-tiedoston (tehty).
 Käyttäjälle tarjotaan mahdollisuutta antaa pankkitilin saldo tilikauden alkua edeltävänä päivänä. Tilikartta pidetään
 minimissä: tuloslaskelman ainoat tilit ovat Tulot ja Menot ja vastaavasti taseen ainoa tili on Varat. Käyttäjä pääsee
 tässä vaiheessa ainoastaan näkemään, paljonko rahaa on tullut ja mennyt. Sovellus tulostaa raportit tietokoneen
-näytölle tekstinä.
+näytölle tekstinä (tehty).
 
 ## Perusversion jälkeen lisättävät toiminnallisuudet
 
@@ -27,7 +27,8 @@ pikemminkin optimistisia tulevaisuuden visioita realistisia tavoitteita, joita e
 puitteissa.
 
  - Ohjataan käyttäjää laatimaan tilikartta, joka palvelee hänen tarkoituksiaan. Käydään tilitapahtumat läpi ja pyydetään
-   käyttäjää valitsemaan niille sopivat vastatilit (esim. sähkölasku merkitään asumismenoksi). 
+   käyttäjää valitsemaan niille sopivat vastatilit (esim. sähkölasku merkitään asumismenoksi). (lisätty luokittelu
+   minimaalisella tilikartalla: Tulot, Menot, Oma tili, Lainat) 
  - Tarjotaan mahdollisuus lisätä taseeseen opintolaina tai asuntolaina ja tähän liittyen tarjotaan mahdollisuutta
    pilkkoa lainanhoitoon liittyvät tilitapahtumat korkomenoihin ja lainanlyhennyksiin.
  - Tarjotaan mahdollisuus kyselyihin. Voidaan hakea esim. asumismenot halutulta ajalta tai näyttää vuoden ruokamenot
