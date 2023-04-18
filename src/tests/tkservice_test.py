@@ -1,5 +1,6 @@
 import unittest
 from services.tk_service import TKService
+from repositories.save_data import save_account
 
 class TestTKService(unittest.TestCase):
     def setUp(self):
@@ -16,7 +17,7 @@ class TestTKService(unittest.TestCase):
     def test_summary_counts_income_correctly(self):
         self.account.summary(self.data)
         key1 = "PESSI RIITTA"
-        key2 = "PALKANMAKSAJA"
+        key2 = "PALKKA"
         self.assertEqual(round(self.account.money_in[key1], 2), 3050.00)
         self.assertEqual(round(self.account.money_in[key2], 2), 37383.03)
 
@@ -29,3 +30,6 @@ class TestTKService(unittest.TestCase):
         self.account.summary(self.data)
         misc2 = self.account.print_summary(min_exp=200)
         self.assertEqual(round(misc2, 2), -1326.47)
+
+    def test_save_data_adds_lines(self.account):
+
