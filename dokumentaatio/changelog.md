@@ -13,3 +13,7 @@
  - Tehty graafiseen käyttöliittymään kilke alkusaldon kyselyä varten, ei ole yhteydessä muihin osiin
  - Lisätty kysely tilitapahtumien luokittelua varten ja siirretty tämä servicestä ui-kansioon
  - Kytketty tekstikäyttöliittymä mainiin
+ - Lisätty serviceen funktio tilitietojen ja luokittelujen tallennusta varten (ei toimi vielä kaikilta osin
+   toivotulla tavalla
+ - Havaittu, että ohjelma kaatuu, jos käyttäjä pyytää yhteenvetoa, ennen kuin tilitietoja on annettu, tämä
+   on vielä korjaamatta

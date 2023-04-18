@@ -1,9 +1,9 @@
-from services.tk_service import TKService
+from services.tk_service import TKService #Pylintin mukaan tätä ei käytetä
 
 def save_account(self):
     new_lines = []
     with open(self.path, "rt", encoding = "utf_8") as readfile:
-            lines = readfile.readlines()
+        lines = readfile.readlines()
     for line in lines[1:]:  # skipataan otsikkorivi
         line = line.split(";")
         new_line = self.name + ";" + line[0] + ";" + line[1] + ";" + line[5] + ";"
@@ -13,5 +13,5 @@ def save_account(self):
             new_line += self.offset_account_in[line[5]] + "\n"
         new_lines.append(new_line)
     print(new_lines)
-    with open("account_data.csv", "a") as writefile:
+    with open("account_data.csv", "a", encoding = "utf8") as writefile:
         writefile.writelines(new_lines)
