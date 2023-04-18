@@ -12,4 +12,6 @@
 | 11.4. | 1,5    | Sovelluskehitys | Koodin tyylikorjauksia |
 | 11.4. | 2,5    | Sovelluskehitys | Käyttöliittymän rakentelua |
 | 12.4. | 6,5    | Sovelluskehitys | Käyttöliittymä / kyselyt |
+| 14.4. | 1,75   | Sovelluskehitys | Käyttöliittymä / kyselyt |
+| 17.4. | 3,25   | Sovelluskehitys | Käyttöliittymä / kyselyt |
  

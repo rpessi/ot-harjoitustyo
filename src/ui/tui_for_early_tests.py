@@ -1,4 +1,6 @@
 from services.tk_service import TKService
+import cowsay
+import ui.queries
 
 # simppeli tekstikäyttöliittymä testailua varten
 def get_file():
@@ -10,7 +12,6 @@ def get_file():
             return tuple((file, name))
         else:
             print("Tiedostoa ei löydy tai se ei ole csv-tiedosto.")
-
 
 def check_file(file):  # onko tän paikka täällä, oisko joku muu paikka parempi?
     # print("päästiin check_file -funktioon")
@@ -27,20 +28,30 @@ def check_file(file):  # onko tän paikka täällä, oisko joku muu paikka parem
         # print("on .csv", file[-4:])
         return True
 
-
 def process_file(file, name):  # ottaa tuplen (file, name) ja lähettää service-kerrokseen
     print("tultiin tiedoston prosessointiin")
     account = TKService(name, file)
     account.summary(account.path)
+    ui.queries.choose_offset_account(account)
     return account
 
+def settings():
+    #summary-funktion raja, jota pienemmät tapahtumat niputetaan yhteen
+    #tilin alkusaldo
+    pass
 
 def run():
-    file_path = "/home/rpessi/ohte/src/tests/Nordea_test_file.csv"
-    # print(check_file(file_path))
-    file, name = get_file()
-    print(file, name)
-    account = process_file(file, name)
-    account.choose_offset_account()
-    
-    
+    while True: 
+        cowsay.cow("Valitse toiminto!")
+        print(f"1 - Lisää tiedosto") #ohjaa tapahtumien luokitteluun
+        print(f"2 - Tulosta yhteenveto")
+        print(f"3 - Lopeta")
+        choice = input("Valinta (anna numero, hyväksy enterillä): ")
+        if choice in ["1", "2", "3"]:
+            if choice == "1":
+                file, name = get_file()
+                account = process_file(file, name)
+            elif choice == "2":
+                account.print_summary()
+            elif choice == "3":
+                exit()
