@@ -2,8 +2,8 @@
 
 | Päivä | Tunnit | Kustannuspaikka | Kuvaus ajankäytöstä                    |
 |:-----:|:--------------------:|:---------------:|:-------------------------|
-| 17.3. | 2      | Sovelluskehitys | Toiminnallisuuksien suunnittelua |
-| 17.3. | 1      | Sovelluskehitys | Tietokantarakenteen suunnittelua |
+| 17.3. | 2,0    | Sovelluskehitys | Toiminnallisuuksien suunnittelua |
+| 17.3. | 1,0    | Sovelluskehitys | Tietokantarakenteen suunnittelua |
 | 25.3. | 1,25   | Dokumentaatio   | Alustava vaatimusmäärittelydokumentti |
 | 25.3. | 1,5    | Sovelluskehitys | TkInteriin tutustumista |
 | 29.3. | 5,25   | Sovelluskehitys | Graafisen näyttöliittymän rakentelua |
@@ -14,4 +14,6 @@
 | 12.4. | 6,5    | Sovelluskehitys | Käyttöliittymä / kyselyt |
 | 14.4. | 1,75   | Sovelluskehitys | Käyttöliittymä / kyselyt |
 | 17.4. | 3,25   | Sovelluskehitys | Käyttöliittymä / kyselyt |
- 
+| 18.4. | 2,75   | Sovelluskehitys | Service / tallennus |
+| 18.4. | 1,0    | Dokumentaatio   | Dokumentaation päivitys ja laajennus |
+| Yht.  | 40,75  | |  |
