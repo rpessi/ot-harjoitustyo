@@ -16,4 +16,6 @@
 | 17.4. | 3,25   | Sovelluskehitys | Käyttöliittymä / kyselyt |
 | 18.4. | 2,75   | Sovelluskehitys | Service / tallennus |
 | 18.4. | 1,0    | Dokumentaatio   | Dokumentaation päivitys ja laajennus |
-| Yht.  | 40,75  | |  |
+| 19.4. | 1,5    | Sovelluskehitys | Käyttöliittymä / kyselyt |
+| 19.4. | 1,5    | Sovelluskehitys | Service / testit |
+| Yht.  | 43,75  | |  |

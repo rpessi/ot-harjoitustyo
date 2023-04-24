@@ -20,11 +20,29 @@ def choose_offset_account(self): #valitaan tilitapahtumille vastatilit
             print(f"Anna vastatatili tapahtumalle {item[0]}: {item[1]:.2f}.")
             offset = input("Vastatili (1: Tulot, 2: Menot, 3: Oma tili, 4: Lainat): ")
             if offset in ["1", "2", "3", "4"] and item[0] not in self.offset_account_out:
-                self.offset_account_out[item[0]] = accounts[int(offset)]
-                break
+                if offset == "4":
+                    while True:
+                        interest = input("Anna korkojen määrä: ")
+                        interest = interest.replace("-", "")
+                        interest = interest.replace(",", ".")
+                        interest = interest.replace("€", "")
+                        if interest.replace(".", "").isdigit():
+                            interest = float(interest)
+                            self.offset_account_out[item[0]] = accounts[int(offset)]
+                            if item[0] not in self.splits:
+                                self.splits[item[0]] = 0
+                            self.splits[item [0]] += -interest
+                            break
+                        else:
+                            print("Anna korkojen määrä numeroina.")
+                    break
+                else:
+                    self.offset_account_out[item[0]] = accounts[int(offset)]
+                    break
     print("Kaikki tapahtumat on luokiteltu.")
-    #print(self.offset_account_in)
-    #print(self.offset_account_out)
+    print("splits", self.splits)
+    print("offset_in", self.offset_account_in)
+    print("offset_out", self.offset_account_out)
 
 #lainatapahtumien pilkkominen
 

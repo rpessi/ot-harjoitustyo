@@ -29,8 +29,7 @@ puitteissa.
  - Ohjataan käyttäjää laatimaan tilikartta, joka palvelee hänen tarkoituksiaan. Käydään tilitapahtumat läpi ja pyydetään
    käyttäjää valitsemaan niille sopivat vastatilit (esim. sähkölasku merkitään asumismenoksi). (lisätty luokittelu
    minimaalisella tilikartalla: Tulot, Menot, Oma tili, Lainat) 
- - Tarjotaan mahdollisuus lisätä taseeseen opintolaina tai asuntolaina ja tähän liittyen tarjotaan mahdollisuutta
-   pilkkoa lainanhoitoon liittyvät tilitapahtumat korkomenoihin ja lainanlyhennyksiin.
+ - Tarjotaan mahdollisuutta pilkkoa lainanhoitoon liittyvät tilitapahtumat korkomenoihin ja lainanlyhennyksiin.(tehty)
  - Tarjotaan mahdollisuus kyselyihin. Voidaan hakea esim. asumismenot halutulta ajalta tai näyttää vuoden ruokamenot
    kuukausittain.
  - Tarjotaan mahdollisuutta käyttää myös muista pankeista tulostettuja CSV-tiedostoja ja ohjeistetaan käyttäjä

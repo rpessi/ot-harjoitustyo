@@ -1,8 +1,7 @@
-# jotain importteja?
-
+#jotain importteja?
 class TKService:
 
-    def __init__(self, name, path):
+    def __init__(self, name, path): #path on jo absoluuttinen polku
         self.name = name
         self.path = path
         self.money_in = {} #cash flow
@@ -10,8 +9,9 @@ class TKService:
         self.balance = {}
         self.offset_account_in = {} #vastatilit panoille / tilitapahtumien luokittelu
         self.offset_account_out = {} #vastatilit otoille / tilitapahtumien luokittelu
+        self.splits = {} #lainojen korot
 
-    # cashflow, tää on vähän kertakäyttöisessä asennossa vielä
+    # cashflow, toimii myös tilitapahtumien luokittelun apuna
     def summary(self, info):  # 3. viikon tilapäistoiminto testauksia varten, Nordean tiliote
         with open(info, "rt", encoding = "utf_8") as file:
             lines = file.readlines()

@@ -1,4 +1,6 @@
-def save_account(account):
+import os
+
+def save_account(account, test = None):
     new_lines = []
     with open(account.path, "rt", encoding = "utf_8") as readfile:
         lines = readfile.readlines()
@@ -10,6 +12,14 @@ def save_account(account):
         else:
             new_line += account.offset_account_in[line[5]] + "\n"
         new_lines.append(new_line)
-    print(new_lines)
-    with open("account_data.csv", "a", encoding = "utf8") as writefile:
-        writefile.writelines(new_lines)
+    dirname = os.path.dirname(__file__)
+    if test == None:
+        data_file_path = os.path.join(dirname, "account_data.csv")
+        with open(data_file_path, "a", encoding = "utf8") as writefile:
+            writefile.writelines(new_lines)
+        print("Tiedot on tallennettu.")
+    else:
+        print (account.offset_account_out)
+        data_file_path = os.path.join(dirname, "tests", "test_account_data.csv")
+        with open(data_file_path, "w", encoding = "utf8") as writefile:
+            writefile.writelines(new_lines) #ei toimi ilman offset_account-sanakirjoja

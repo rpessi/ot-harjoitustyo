@@ -6,7 +6,7 @@ import repositories.save_data
 def get_file():
     while True:
         file = input(
-            "Anna csv-tiedoston nimi ja polku, esim. Home/documents/tiliote.csv: ")
+            "Anna csv-tiedoston nimi ja polku, esim. Home/documents/tiliote.csv: ") #haluaa absoluuttisen polun
         if check_file(file):
             name = input("Anna tilin nimi: ")
             return tuple((file, name))
@@ -28,7 +28,7 @@ def process_file(file, name):  # ottaa tuplen (file, name) ja lähettää servic
     account = TKService(name, file)
     account.summary(account.path)
     ui.queries.choose_offset_account(account)
-    repositories.save_data.save_account(account)
+    #repositories.save_data.save_account(account)
     return account
 
 def settings():
