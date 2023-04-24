@@ -8,15 +8,19 @@ class TestTKService(unittest.TestCase):
         dirname = os.path.dirname(__file__)
         self.data = os.path.join(dirname, "test_file_short.csv")
         self.account = TKService("TEST", self.data)
-        self.account.splits['NORDEA LAINAT/LÅN'] = -2000.0
-        self.account.offset_account_in['PALKKA'] = ['Tulot']
-        self.account.offset_account_in['PESSI RIITTA'] = ['Oma tili']
-        self.account.offset_account_in['MJUK GROUP AB'] = ['Menot']
-        self.account.offset_account_out['NORDEA LAINAT/LÅN'] = ['Lainat']
-        self.account.offset_account_out['Asunto Oy Helsingin Välimeri'] = ['Menot']
-        self.account.offset_account_out['NORDEA RAHOITUS SUOMI OY'] = ['Menot']
-        self.account.offset_account_out['IF VAKUUTUS'] = ['Menot']
-        self.account.offset_account_out['Elisa Oyj'] = ['Menot']
+        self.account.splits["NORDEA LAINAT 1"] = -500.0
+        self.account.splits["NORDEA LAINAT 2"] = -1500.0
+        self.account.loans["NORDEA LAINAT 1"] = -8485.83
+        self.account.loans["NORDEA LAINAT 2"] = -13211.29
+        self.account.offset_account_in['PALKKA'] = 'Tulot'
+        self.account.offset_account_in['PESSI RIITTA'] = 'Oma tili'
+        self.account.offset_account_in['MJUK GROUP AB'] = 'Menot'
+        self.account.offset_account_out['NORDEA LAINAT 1'] = 'Lainat'
+        self.account.offset_account_out['NORDEA LAINAT 2'] = 'Lainat'
+        self.account.offset_account_out['Asunto Oy Helsingin Välimeri'] = 'Menot'
+        self.account.offset_account_out['NORDEA RAHOITUS SUOMI OY'] = 'Menot'
+        self.account.offset_account_out['IF VAKUUTUS'] = 'Menot'
+        self.account.offset_account_out['Elisa Oyj'] = 'Menot'
 
     def test_summary_counts_expenses_correctly(self):
         self.account.summary(self.data)
@@ -42,16 +46,9 @@ class TestTKService(unittest.TestCase):
         misc2 = self.account.print_summary(min_exp=2000)
         self.assertEqual(round(misc2, 2), -2449.70)
 
-    def check_file_path(self):
-        self.assertEqual(self.data, "mikä tähän tulis")
-
-    def test_save_account(self):
-        dirname = os.path.dirname(__file__)
+    def test_save_account_works(self): #tai ei ainakaan kaadu
         save_account(self.account, test = True)
-        #tarvitaan offset.accounts inittiin
-        #tarvitaan splits inittiin
+        
 
-        pass
-        #
     
 

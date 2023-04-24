@@ -5,3 +5,5 @@ htmlcov
 poetry-testi/
 harjoitustyo/
 test_file_short.csv
+src/tests/test_account_data.csv
+
