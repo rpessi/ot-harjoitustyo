@@ -31,20 +31,16 @@ def process_file(file, name):  # ottaa tuplen (file, name) ja lähettää servic
     repositories.save_data.save_account(account)
     return account
 
-def settings():
-    #summary-funktion raja, jota pienemmät tapahtumat niputetaan yhteen
-    #tasetilien (pankkitilit ja lainat) alkusaldo
-    pass
-
 def run():
     file_received = False
     while True: 
         cowsay.cow(" Valitse toiminto! ")
         print(f" 1 - Lisää tiedosto") #ohjaa tapahtumien luokitteluun
         print(f" 2 - Tulosta lisätyn tiedoston kassavirtalaskelma")
-        print(f" 3 - Lopeta")
+        print(f" 3 - Tulosta lisätyn tiedoston tuloslaskelma")
+        print(f" 4 - Lopeta")
         choice = input(" Valinta (anna numero, hyväksy enterillä): ")
-        if choice in ["1", "2", "3"]:
+        if choice in ["1", "2", "3", "4"]:
             if choice == "1":
                 file, name = get_file()
                 account = process_file(file, name)
@@ -54,6 +50,12 @@ def run():
                     print()
                     print(" o_O Lisää ensin tiedosto! o_O")
                 else:
-                    account.print_summary()
+                    account.print_cashflow()
             elif choice == "3":
+                if not file_received:
+                    print()
+                    print(" o_O Lisää ensin tiedosto! o_O")
+                else:
+                    account.print_result()
+            elif choice == "4":
                 exit()

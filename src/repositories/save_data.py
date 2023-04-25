@@ -36,3 +36,4 @@ def save_account(account, test = False):
         data_file_path = os.path.join(dirname, "../tests", "test_account_data.csv")
         with open(data_file_path, "w", encoding = "utf8") as writefile:
             writefile.writelines(new_lines)
+    return True

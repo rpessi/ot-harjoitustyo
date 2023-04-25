@@ -13,7 +13,7 @@ class TKService:
         self.splits = {} #lainojen korot, kokonaismäärä
 
     # cashflow, toimii myös tilitapahtumien luokittelun apuna
-    def summary(self, info):  # 3. viikon tilapäistoiminto testauksia varten, Nordean tiliote
+    def summary(self, info):
         with open(info, "rt", encoding = "utf_8") as file:
             lines = file.readlines()
         for line in lines[1:]:  # skipataan otsikkorivi
@@ -29,9 +29,9 @@ class TKService:
                 if line[5] not in self.money_in:
                     self.money_in[line[5]] = 0
                 self.money_in[line[5]] += float(amount)
-        #print(self.money_out)
+
     #tilitapahtumat/kassavirta, ei perustu vielä pysyväistallennukseen
-    def print_summary(self, min_exp=100):
+    def print_cashflow(self, min_exp=100):
         total_misc_exp = 0
         total_money_in = 0
         total_money_out = 0
@@ -55,4 +55,39 @@ class TKService:
         print()
         print(f"Panot yhteensä: {total_money_in:.2f}")
         print(f"Nostot yhteensä: {-total_money_out:.2f}")
-        return total_misc_exp
+        return (total_money_in, total_money_out, total_misc_exp) #palautukset testejä varten
+    #tuloslaskelma
+    def print_result(self, min_exp=100):
+        total_misc_exp = 0
+        total_income = 0
+        total_expense = 0
+        print(f"Tuloslaskelma tililtä {self.name}")
+        print()
+        print("Tulot")
+        print()
+        for item in self.money_in.items():
+            if self.offset_account_in[item[0]] != "Lainat": #skipataan lainannostot
+                print(f"{item[0]}: {item[1]:.2f}")
+                total_income += item[1]
+        print()
+        print("Menot")
+        print()
+        for item in self.money_out.items():
+            if self.offset_account_out[item[0]] == "Lainat":
+                payment = self.splits[item[0]] #korkojen osuus
+                if abs(payment) < min_exp:
+                    total_misc_exp += payment
+                else:
+                    print(f"{item[0]}: {-payment:.2f}") #printataan plusmerkkisenä
+                    total_expense += payment
+            else:
+                if abs(item[1]) < min_exp:
+                    total_misc_exp += item[1]
+                else:
+                    print(f"{item[0]}: {-item[1]:.2f}") #printataan plusmerkkisenä
+                    total_expense += item[1]
+        print(f"Muut menot: {-total_misc_exp:.2f}")
+        print()
+        print(f"Tulot yhteensä: {total_income:.2f}")
+        print(f"Menot yhteensä: {-total_expense:.2f}")
+        return (total_income, total_expense, total_misc_exp) #palautukset testejä varten

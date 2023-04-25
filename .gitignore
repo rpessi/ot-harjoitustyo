@@ -5,4 +5,4 @@ htmlcov
 poetry-testi/
 harjoitustyo/
 src/tests/test_account_data.csv
-src/gui
+/gui_outcast
