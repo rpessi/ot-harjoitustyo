@@ -24,7 +24,7 @@ def check_file(file):
     else:
         return True
 
-def process_file(file, name):  # ottaa tuplen (file, name) ja lähettää service-kerrokseen
+def process_file(file, name):
     account = TKService(name, file)
     account.summary(account.path)
     ui.queries.choose_offset_account(account)
@@ -35,7 +35,7 @@ def run():
     file_received = False
     while True: 
         cowsay.cow(" Valitse toiminto! ")
-        print(f" 1 - Lisää tiedosto") #ohjaa tapahtumien luokitteluun
+        print(f" 1 - Lisää tiedosto")
         print(f" 2 - Tulosta lisätyn tiedoston kassavirtalaskelma")
         print(f" 3 - Tulosta lisätyn tiedoston tuloslaskelma")
         print(f" 4 - Lopeta")

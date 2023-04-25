@@ -8,8 +8,8 @@ class TestTKService(unittest.TestCase):
         dirname = os.path.dirname(__file__)
         self.data = os.path.join(dirname, "test_file_short.csv")
         self.account = TKService("TEST", self.data)
-        self.account.splits["NORDEA LAINAT 1"] = -500.0
-        self.account.splits["NORDEA LAINAT 2"] = -1500.0
+        self.account.interests["NORDEA LAINAT 1"] = -500.0
+        self.account.interests["NORDEA LAINAT 2"] = -1500.0
         self.account.loans["NORDEA LAINAT 1"] = -8485.83
         self.account.loans["NORDEA LAINAT 2"] = -13211.29
         self.account.offset_account_in['PALKKA'] = 'Tulot'
@@ -66,16 +66,17 @@ class TestTKService(unittest.TestCase):
         misc2 = self.account.print_result(min_exp=2000)[2]
         self.assertEqual(round(misc2, 2), -4449.70)
 
-    def test_print_result_counts_total_income_correctly(self): #kopioitu, muuta
+    def test_print_result_counts_total_income_correctly(self):
         self.account.summary(self.data)
         total_income = self.account.print_result()[0]
         self.assertEqual(round(total_income, 2), 37383.03)
 
-    def test_print_result_counts_total_expense_correctly(self): #kopioitu, muuta
+    def test_print_result_counts_total_expense_correctly(self):
         self.account.summary(self.data)
         total_expense = self.account.print_result()[1]
         self.assertEqual(round(total_expense, 2), -18375.21)
 
-    def test_save_account_works(self): #tai ei ainakaan kaadu
+    def test_save_account_works(self):
         result = save_account(self.account, test = True)
         self.assertEqual(result, True)
+
