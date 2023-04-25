@@ -61,7 +61,8 @@ class TKService:
         print("Tulot")
         print()
         for item in self.money_in.items():
-            if self.offset_account_in[item[0]] != "Lainat" and self.offset_account_in[item[0]] != "Oma tili":
+            if self.offset_account_in[item[0]] != "Lainat" and \
+            self.offset_account_in[item[0]]!= "Oma tili":
                 print(f"{item[0]}: {item[1]:.2f}")
                 total_income += item[1]
         print()
