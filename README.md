@@ -2,7 +2,7 @@
 
 Ohjelman tarkoitus on koota yhteenveto käyttäjän antamasta tiliotteesta. Ohjelma on tarkoitettu yhdelle käyttäjälle.
 
-[Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/Viikko5.3)
+[Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Python-versio
 
