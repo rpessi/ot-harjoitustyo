@@ -13,7 +13,7 @@ def save_account(account, test = False):
                 new_line += account.offset_account_out[line[5]] + "\n"
                 new_lines.append(new_line)
             else:
-                interest = float(amount) * account.splits[line[5]] / account.loans[line[5]]
+                interest = float(amount) * account.interests[line[5]] / account.loans[line[5]]
                 payment = float(amount) - interest
                 new_line = account.name + ";" + line[0] + ";" + str(payment) + ";"
                 new_line += line[5] + ";" + "Lainat" + "\n"
