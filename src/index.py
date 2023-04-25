@@ -1,4 +1,4 @@
-from ui.tui_for_early_tests import run
+from ui.tui import run
 
 def main():
     run()

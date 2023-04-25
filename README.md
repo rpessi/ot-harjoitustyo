@@ -1,10 +1,15 @@
 # Talouskatsaus
 
-Tämä on vasta tiiseri. Toimivaa sovellusta joudut vielä odottelemaan.
+Sovelluksen tarkoitus on koota yhteenveto käyttäjän antamasta tiliotteesta. Sovellus on tarkoitettu yhdelle käyttäjälle.
+
+## Python-versio
+
+Sovelluksen toiminta on testattu Python-versiolla 3.8. Erityisesti tätä vanhempien Python-versioiden kanssa saattaa
+esiintyä ongelmia. 
 
 ## Dokumentaatio
 
 - [Alustava vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
-- [Työajan seuranta](./dokumentaatio/tuntikirjanpito.md)
+- [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 - [Changelog](./dokumentaatio/changelog.md)
-
+- [Työajan seuranta](./dokumentaatio/tuntikirjanpito.md)

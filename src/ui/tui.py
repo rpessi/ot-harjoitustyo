@@ -6,7 +6,7 @@ import repositories.save_data
 def get_file():
     while True:
         file = input(
-            "Anna csv-tiedoston nimi ja polku, esim. Home/documents/tiliote.csv: ")
+            "Anna csv-tiedoston nimi ja polku, esim. src/short.csv: ")
         if check_file(file):
             name = input("Anna tilin nimi: ")
             return tuple((file, name))
@@ -39,11 +39,11 @@ def settings():
 def run():
     file_received = False
     while True: 
-        cowsay.cow("Valitse toiminto!")
-        print(f"1 - Lisää tiedosto") #ohjaa tapahtumien luokitteluun
-        print(f"2 - Tulosta lisätyn tiedoston yhteenveto")
-        print(f"3 - Lopeta")
-        choice = input("Valinta (anna numero, hyväksy enterillä): ")
+        cowsay.cow(" Valitse toiminto! ")
+        print(f" 1 - Lisää tiedosto") #ohjaa tapahtumien luokitteluun
+        print(f" 2 - Tulosta lisätyn tiedoston kassavirtalaskelma")
+        print(f" 3 - Lopeta")
+        choice = input(" Valinta (anna numero, hyväksy enterillä): ")
         if choice in ["1", "2", "3"]:
             if choice == "1":
                 file, name = get_file()
@@ -52,7 +52,7 @@ def run():
             elif choice == "2":
                 if not file_received:
                     print()
-                    print("o_O Lisää ensin tiedosto! o_O")
+                    print(" o_O Lisää ensin tiedosto! o_O")
                 else:
                     account.print_summary()
             elif choice == "3":

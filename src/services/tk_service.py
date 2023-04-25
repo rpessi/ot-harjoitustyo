@@ -29,7 +29,7 @@ class TKService:
                 if line[5] not in self.money_in:
                     self.money_in[line[5]] = 0
                 self.money_in[line[5]] += float(amount)
-        print(self.money_out)
+        #print(self.money_out)
     #tilitapahtumat/kassavirta, ei perustu vielä pysyväistallennukseen
     def print_summary(self, min_exp=100):
         total_misc_exp = 0
