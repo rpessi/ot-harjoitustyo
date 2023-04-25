@@ -1,6 +1,7 @@
 # Käyttöohje
 
-Lataa projektin viimeisimmän [releasen](https://github.com/rpessi/ot-harjoitustyo/releases) lähdekoodi 
+Lataa projektin viimeisimmän [releasen](https://github.com/rpessi/ot-harjoitustyo/releases/)
+) lähdekoodi 
 valitsemalla _Assets_-osion alta _Source code_.
 
 ## Ohjelman käynnistäminen

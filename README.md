@@ -2,6 +2,8 @@
 
 Ohjelman tarkoitus on koota yhteenveto käyttäjän antamasta tiliotteesta. Ohjelma on tarkoitettu yhdelle käyttäjälle.
 
+[Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Python-versio
 
 Ohjelman toiminta on testattu Python-versiolla 3.8. Erityisesti tätä vanhempien Python-versioiden kanssa saattaa
@@ -14,7 +16,6 @@ esiintyä ongelmia.
 - [Käyttöohje](./dokumentaatio/kayttoohje.md)
 - [Changelog](./dokumentaatio/changelog.md)
 - [Työajan seuranta](./dokumentaatio/tuntikirjanpito.md)
-- [Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Ohjelman asennus
 
