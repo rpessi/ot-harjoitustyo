@@ -14,7 +14,7 @@ class TestTKService(unittest.TestCase):
         self.account.loans["NORDEA LAINAT 2"] = -13211.29
         self.account.offset_account_in['PALKKA'] = 'Tulot'
         self.account.offset_account_in['PIRJO PYTHON'] = 'Lainat'
-        self.account.offset_account_in['MJUK GROUP AB'] = 'Menot'
+        self.account.offset_account_in['MJUK GROUP AB'] = 'Oma tili'
         self.account.offset_account_out['NORDEA LAINAT 1'] = 'Lainat'
         self.account.offset_account_out['NORDEA LAINAT 2'] = 'Lainat'
         self.account.offset_account_out['Asunto Oy Helsingin Välimeri'] = 'Menot'
@@ -69,7 +69,7 @@ class TestTKService(unittest.TestCase):
     def test_print_result_counts_total_income_correctly(self): #kopioitu, muuta
         self.account.summary(self.data)
         total_income = self.account.print_result()[0]
-        self.assertEqual(round(total_income, 2), 37658.04)
+        self.assertEqual(round(total_income, 2), 37383.03)
 
     def test_print_result_counts_total_expense_correctly(self): #kopioitu, muuta
         self.account.summary(self.data)

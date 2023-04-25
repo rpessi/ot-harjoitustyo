@@ -23,10 +23,12 @@
  - Tehty alkuvalikkoon tarkistus, jotta ohjelma ei kaadu valittaessa yhteenvetoa tilanteessa, jossa käyttäjä ei
    ole antanut vielä tilitietoja
  - Lisätty tilitapahtumien luokittelukyselyyn lainojen kohdalle lainatapahtuman pilkkominen, jossa käyttäjä
-   voi ilmoittaa maksettujen korkojen osuuden
+   voi ilmoittaa tilikaudella maksettujen korkojen määrän
  - Lisätty servicen tallennusfunktioon lainatapahtumien erittely, joka erittelee korot menoihin ja lyhennykset
    lainoihin (tase)
  - Lisätty tallennusfunktiolle testi, joka toistaiseksi vasta tarkistaa, ettei tallennusfunktio kaadu
    (tallennuksen toimintaa on tarkasteltu silmämääräisesti)
  - Parannettu tiedostopolkuja
+ - Lisätty serviceen funktio, joka tulostaa tuloslaskelman ja tehty tälle testit.
+ - Lisätty testejä servicen funktiolle, joka tulostaa kassavirtalaskelman.
 

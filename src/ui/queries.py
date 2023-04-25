@@ -3,7 +3,6 @@ from services.tk_service import TKService
 def choose_offset_account(self): #valitaan tilitapahtumille vastatilit
     accounts = [0, "Tulot", "Menot", "Oma tili", "Lainat"]
     print("Luokitellaan tilille tulevat tapahtumat.")
-    print("Voit kirjata menoihin esim. irtaimiston myynnit.")
     print()
     for item in self.money_in.items():
         while True: #mieti uusiksi tilanteessa, kun aiempia tapahtumia on jo luokiteltu
@@ -13,7 +12,6 @@ def choose_offset_account(self): #valitaan tilitapahtumille vastatilit
                 self.offset_account_in[item[0]] = accounts[int(offset)]
                 break
     print("Luokitellaan tililtä lähtevät tapahtumat.")
-    print("Voit kirjata tuloihin esim. jälkiverot.")
     print()
     for item in self.money_out.items():
         while True: #mieti uusiksi tilanteessa, kun aiempia tapahtumia on jo luokiteltu

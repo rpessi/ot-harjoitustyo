@@ -65,8 +65,8 @@ class TKService:
         print()
         print("Tulot")
         print()
-        for item in self.money_in.items():
-            if self.offset_account_in[item[0]] != "Lainat": #skipataan lainannostot
+        for item in self.money_in.items(): #skipataan lainat ja tilisiirrot omien tilien välillä
+            if self.offset_account_in[item[0]] != "Lainat" and self.offset_account_in[item[0]] != "Oma tili":
                 print(f"{item[0]}: {item[1]:.2f}")
                 total_income += item[1]
         print()
@@ -80,7 +80,7 @@ class TKService:
                 else:
                     print(f"{item[0]}: {-payment:.2f}") #printataan plusmerkkisenä
                     total_expense += payment
-            else:
+            elif self.offset_account_out[item[0]] != "Oma tili":
                 if abs(item[1]) < min_exp:
                     total_misc_exp += item[1]
                 else:
