@@ -62,7 +62,7 @@ Ohjelma käynnistyy terminaalissa ja antaa toimintavalikon:
 ![](./kuvat/aloitusvalikko.jpg)
 
 Valinnat ovat vielä vähissä, koska pysyväistallennettua tietoa ei päästä vielä käyttämään. Ennen kuin voit tulostaa 
-kassavirtalaskelman, sinun täytyy antaa tiliotetiedosto ja luokitella tilitapahtumat. 
+kassavirtalaskelman tai tuloslaskelman, sinun täytyy antaa tiliotetiedosto ja luokitella tilitapahtumat. 
 
 
 

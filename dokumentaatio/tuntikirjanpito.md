@@ -21,4 +21,8 @@
 | 24.4. | 2,5    | Sovelluskehitys | Tiedostojen polkujen säätöä |
 | 24.4. | 2,0    | Sovelluskehitys | Service / tallennus |
 | 24.4. | 4,0    | Sovelluskehitys | Service / testit |
-| Yht.  | 48,25  | |  |
+| 25.4. | 1,5    | Sovelluskehitys | Service / tuloslaskelma |
+| 25.4. | 1,3    | Sovelluskehitys | Testejä tulostusfunktioille |
+| 25.4. | 2,9    | Dokumentaatio   | Käyttöohje |
+| 25.4. | 0,6    | Dokumentaatio   | Dokumentaation päivitys |
+| Yht.  | 59,55  | |  |

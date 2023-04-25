@@ -31,4 +31,3 @@
  - Parannettu tiedostopolkuja
  - Lisätty serviceen funktio, joka tulostaa tuloslaskelman ja tehty tälle testit.
  - Lisätty testejä servicen funktiolle, joka tulostaa kassavirtalaskelman.
-
