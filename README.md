@@ -14,6 +14,7 @@ esiintyä ongelmia.
 - [Käyttöohje](./dokumentaatio/kayttoohje.md)
 - [Changelog](./dokumentaatio/changelog.md)
 - [Työajan seuranta](./dokumentaatio/tuntikirjanpito.md)
+- [Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Ohjelman asennus
 
