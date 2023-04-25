@@ -40,7 +40,7 @@ pysyväistiedostoon, mutta näitä tietoja ei päästä vielä käyttämään. K
 sequenceDiagram
    actor User
    participant UI
-   participant Services
+   participant Service
    participant Repositories
    UI->>User: "Valitse toiminto: "
    User->>UI: "1"
