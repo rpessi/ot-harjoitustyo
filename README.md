@@ -11,6 +11,6 @@ esiintyä ongelmia.
 
 - [Alustava vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
-- [Käyttöohje](.dokumentaatio/kayttoohje.md)
+- [Käyttöohje](./dokumentaatio/kayttoohje.md)
 - [Changelog](./dokumentaatio/changelog.md)
 - [Työajan seuranta](./dokumentaatio/tuntikirjanpito.md)
