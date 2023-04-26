@@ -25,11 +25,11 @@ def choose_offset_account(self):
                         interest = interest.replace(",", ".")
                         interest = interest.replace("€", "")
                         if interest.replace(".", "").isdigit():
-                            interest = float(interest)
+                            interest = round(float(interest), 2)
                             self.offset_account_out[item[0]] = accounts[int(offset)]
-                            if item[0] not in self.splits:
-                                self.splits[item[0]] = 0
-                            self.splits[item [0]] += -interest
+                            if item[0] not in self.interests:
+                                self.interests[item[0]] = 0
+                            self.interests[item [0]] += -interest
                             if item[0] not in self.loans:
                                 self.loans[item[0]] = 0
                             self.loans[item[0]] += item[1]

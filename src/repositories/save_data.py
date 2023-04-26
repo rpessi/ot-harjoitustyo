@@ -1,4 +1,5 @@
 import os
+import json
 
 def save_account(account, test = False):
     new_lines = []
@@ -13,8 +14,8 @@ def save_account(account, test = False):
                 new_line += account.offset_account_out[line[5]] + "\n"
                 new_lines.append(new_line)
             else:
-                interest = float(amount) * account.interests[line[5]] / account.loans[line[5]]
-                payment = float(amount) - interest
+                interest = round(float(amount) * account.interests[line[5]] / account.loans[line[5]], 2)
+                payment = round(float(amount) - interest, 2)
                 new_line = account.name + ";" + line[0] + ";" + str(payment) + ";"
                 new_line += line[5] + ";" + "Lainat" + "\n"
                 new_lines.append(new_line)
