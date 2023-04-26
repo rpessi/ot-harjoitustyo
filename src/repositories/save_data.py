@@ -29,7 +29,7 @@ def save_account(account, file, test = False):
         with open(data_file_path, "a", encoding = "utf8") as writefile:
             writefile.writelines(new_lines)
         save_to_json(new_lines, account)
-        print("Tiedot on tallennettu.")
+        print(" Tiedot on tallennettu.")
     else:
         data_file_path = os.path.join(dirname, "../tests", "test_account_data.csv")
         with open(data_file_path, "w", encoding = "utf8") as writefile:
@@ -56,8 +56,8 @@ def read_from_json(name, key, value):
         events = json.loads(file.read())
         total = 0
     for event in events[name]:
-        if event[key] == value:
-            print(f"{value}  {event['Summa']}")
+        if event[key].startswith(value):
+            print(f" {event[key]}  {event['Summa']}")
             total += float(event['Summa'])
-    print(f"Yhteensä {round(total, 2)}")
+    print(f" Yhteensä {round(total, 2)}")
     return round(total, 2)

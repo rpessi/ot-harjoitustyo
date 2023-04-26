@@ -27,15 +27,15 @@ class TKService:
 
     def print_cashflow(self, min_exp=100):
         total_misc_exp, total_money_in, total_money_out = (0, 0, 0,)
-        print(f"Yhteenveto tilitapahtumista tililtä {self.name}")
+        print(f" Yhteenveto tilitapahtumista tililtä {self.name}")
         print()
-        print("Tilillepanot")
+        print(" Tilillepanot")
         print()
         for item in self.money_in.items():
             print(f"{item[0]}: {item[1]:.2f}")
             total_money_in += item[1]
         print()
-        print("Tilisiirrot")
+        print(" Tilisiirrot")
         print()
         for item in self.money_out.items():
             if abs(item[1]) < min_exp:
@@ -43,17 +43,17 @@ class TKService:
             else:
                 print(f"{item[0]}: {-item[1]:.2f}")
                 total_money_out += item[1]
-        print(f"Muut tilisiirrot: {-total_misc_exp:.2f}")
+        print(f" Muut tilisiirrot: {-total_misc_exp:.2f}")
         print()
-        print(f"Panot yhteensä: {total_money_in:.2f}")
-        print(f"Nostot yhteensä: {-total_money_out:.2f}")
+        print(f" Panot yhteensä: {total_money_in:.2f}")
+        print(f" Nostot yhteensä: {-total_money_out:.2f}")
         return (total_money_in, total_money_out, total_misc_exp)
 
     def print_result(self, min_exp=100):
         total_misc_exp, total_income, total_expense = (0, 0, 0)
-        print(f"Tuloslaskelma tililtä {self.name}")
+        print(f" Tuloslaskelma tililtä {self.name}")
         print()
-        print("Tulot")
+        print(" Tulot")
         print()
         for item in self.money_in.items():
             if self.offset_account_in[item[0]] != "Lainat" and \
@@ -61,7 +61,7 @@ class TKService:
                 print(f"{item[0]}: {item[1]:.2f}")
                 total_income += item[1]
         print()
-        print("Menot")
+        print(" Menot")
         print()
         for item in self.money_out.items():
             if self.offset_account_out[item[0]] == "Lainat":
@@ -69,16 +69,16 @@ class TKService:
                 if abs(payment) < min_exp:
                     total_misc_exp += payment
                 else:
-                    print(f"{item[0]}: {-payment:.2f}")
+                    print(f" {item[0]}: {-payment:.2f}")
                     total_expense += payment
             elif self.offset_account_out[item[0]] != "Oma tili":
                 if abs(item[1]) < min_exp:
                     total_misc_exp += item[1]
                 else:
-                    print(f"{item[0]}: {-item[1]:.2f}")
+                    print(f" {item[0]}: {-item[1]:.2f}")
                     total_expense += item[1]
-        print(f"Muut menot: {-total_misc_exp:.2f}")
+        print(f" Muut menot: {-total_misc_exp:.2f}")
         print()
-        print(f"Tulot yhteensä: {total_income:.2f}")
-        print(f"Menot yhteensä: {-total_expense:.2f}")
+        print(f" Tulot yhteensä: {total_income:.2f}")
+        print(f" Menot yhteensä: {-total_expense:.2f}")
         return (total_income, total_expense, total_misc_exp)
