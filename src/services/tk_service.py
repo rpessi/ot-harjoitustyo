@@ -1,8 +1,7 @@
 class TKService:
 
-    def __init__(self, name, path):
+    def __init__(self, name):
         self.name = name
-        self.path = path
         self.money_in = {}
         self.money_out = {}
         self.balance = {}
@@ -27,9 +26,7 @@ class TKService:
                 self.money_in[line[5]] += float(amount)
 
     def print_cashflow(self, min_exp=100):
-        total_misc_exp = 0
-        total_money_in = 0
-        total_money_out = 0
+        total_misc_exp, total_money_in, total_money_out = (0, 0, 0,)
         print(f"Yhteenveto tilitapahtumista tililtä {self.name}")
         print()
         print("Tilillepanot")
@@ -53,9 +50,7 @@ class TKService:
         return (total_money_in, total_money_out, total_misc_exp)
 
     def print_result(self, min_exp=100):
-        total_misc_exp = 0
-        total_income = 0
-        total_expense = 0
+        total_misc_exp, total_income, total_expense = (0, 0, 0)
         print(f"Tuloslaskelma tililtä {self.name}")
         print()
         print("Tulot")

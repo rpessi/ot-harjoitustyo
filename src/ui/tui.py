@@ -25,10 +25,10 @@ def check_file(file):
         return True
 
 def process_file(file, name):
-    account = TKService(name, file)
-    account.summary(account.path)
+    account = TKService(name)
+    account.summary(file)
     ui.queries.choose_offset_account(account)
-    repositories.save_data.save_account(account)
+    repositories.save_data.save_account(account, file)
     return account
 
 def run():
@@ -38,9 +38,10 @@ def run():
         print(f" 1 - Lisää tiedosto")
         print(f" 2 - Tulosta lisätyn tiedoston kassavirtalaskelma")
         print(f" 3 - Tulosta lisätyn tiedoston tuloslaskelma")
-        print(f" 4 - Lopeta")
+        print(f" 4 - Etsi tapahtumia")
+        print(f" 5 - Lopeta")
         choice = input(" Valinta (anna numero, hyväksy enterillä): ")
-        if choice in ["1", "2", "3", "4"]:
+        if choice in ["1", "2", "3", "4", "5"]:
             if choice == "1":
                 file, name = get_file()
                 account = process_file(file, name)
@@ -58,4 +59,6 @@ def run():
                 else:
                     account.print_result()
             elif choice == "4":
+                ui.queries.search_events_by_one()
+            elif choice == "5":
                 exit()

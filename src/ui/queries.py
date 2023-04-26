@@ -1,4 +1,5 @@
 from services.tk_service import TKService
+from repositories.save_data import read_from_json as rfs
 
 def choose_offset_account(self):
     accounts = [0, "Tulot", "Menot", "Oma tili", "Lainat"]
@@ -41,3 +42,17 @@ def choose_offset_account(self):
                     self.offset_account_out[item[0]] = accounts[int(offset)]
                     break
     print("Kaikki tapahtumat on luokiteltu.")
+
+def search_events_by_one():
+    print("Voit etsiä tapahtumia tallennetuilta tileiltä. Anna tili, jolta haluat hakea tietoja.")
+    name = input("Tilin nimi: ")
+    keys = ["Nimi", "Luokka"]
+    print("Valittavissa olevat hakuavaimet ovat:")
+    print(f" 1: {keys[0]}, 2: {keys[1]}")
+    choice = input("Valintasi (numero + enter): ")
+    key = keys[int(choice)-1]
+    if key == "Nimi":
+        print("Anna tapahtuman nimi, jolla haluat etsiä.")
+        value = input("Tapahtuman nimi: ")
+    rfs(name, key, value)
+    

@@ -1,43 +1,39 @@
 import os
 import json
 
-def save_account(account, test = False):
+def save_account(account, file, test = False):
     new_lines = []
-    with open(account.path, "rt", encoding = "utf_8") as readfile:
+    with open(file, "rt", encoding = "utf_8") as readfile:
         lines = readfile.readlines()
     for line in lines[1:]:  # skipataan otsikkorivi
         line = line.split(";")
         amount = line[1].replace(",", ".")
         if line[1][0] == "-":
             if account.offset_account_out[line[5]] != "Lainat":
-                new_line = account.name + ";" + line[0] + ";" + amount + ";" + line[5] + ";"
-                new_line += account.offset_account_out[line[5]] + "\n"
-                new_lines.append(new_line)
+                new_lines.append(account.name + ";" + line[0] + ";" + amount + ";" + line[5] + ";" \
+                    + account.offset_account_out[line[5]] + "\n")
             else:
-                interest = round(float(amount) * account.interests[line[5]] / account.loans[line[5]], 2)
+                interest = round(float(amount) * account.interests[line[5]] \
+                                 / account.loans[line[5]], 2)
                 payment = round(float(amount) - interest, 2)
-                new_line = account.name + ";" + line[0] + ";" + str(payment) + ";"
-                new_line += line[5] + ";" + "Lainat" + "\n"
-                new_lines.append(new_line)
-                new_line = account.name + ";" + line[0] + ";" + str(interest) + ";"
-                new_line += line[5] + ";" + "Menot" + "\n"
-                new_lines.append(new_line)
+                new_lines.append(account.name + ";" + line[0] + ";" + str(payment) + ";" \
+                        + line[5] + ";" + "Lainat" + "\n")
+                new_lines.append(account.name + ";" + line[0] + ";" + str(interest) + ";" \
+                    + line[5] + ";" + "Menot" + "\n")
         else:
-            new_line = account.name + ";" + line[0] + ";" + amount + ";" + line[5] + ";"
-            new_line += account.offset_account_in[line[5]] + "\n"
-            new_lines.append(new_line)
+            new_lines.append(account.name + ";" + line[0] + ";" + amount + ";" + line[5] + ";" \
+                + account.offset_account_in[line[5]] + "\n")
+    dirname = os.path.dirname(__file__)
     if not test:
-        dirname = os.path.dirname(__file__)
         data_file_path = os.path.join(dirname, "account_data.csv")
         with open(data_file_path, "a", encoding = "utf8") as writefile:
             writefile.writelines(new_lines)
         save_to_json(new_lines, account)
         print("Tiedot on tallennettu.")
     else:
-        dirname = os.path.dirname(__file__)
         data_file_path = os.path.join(dirname, "../tests", "test_account_data.csv")
         with open(data_file_path, "w", encoding = "utf8") as writefile:
-            writefile.writelines(new_lines, account)
+            writefile.writelines(new_lines)
     return True
 
 def save_to_json(data, account):
@@ -46,23 +42,22 @@ def save_to_json(data, account):
         osat = rivi.split(";")
         if osat[0] not in events:
             events[osat[0]] = []
-        events[osat[0]].append({"Vuosi": osat[1][:4], "Kk": osat[1][5:7], 
+        events[osat[0]].append({"Vuosi": osat[1][:4], "Kk": osat[1][5:7],
             "Summa": osat[2], "Nimi": osat[3], "Luokka": osat[4].replace("\n", ""),
             "Alaluokka": ""})
     json_string = json.dumps(events, indent = 2)
     name = account.name + ".json"
-    with open(name, 'w') as file:
-        file.write(json_string) #tallentaa repon juureen
+    with open(name, 'w', encoding = 'UTF-8') as file:
+        file.write(json_string) #tallentaa repon juureen, under construction
 
-def read_from_json(name, criteria, search):
+def read_from_json(name, key, value):
     filename = name + ".json"
-    with open(filename, 'r') as file:
+    with open(filename, 'r', encoding = 'UTF-8') as file:
         events = json.loads(file.read())
         total = 0
     for event in events[name]:
-        if event[criteria] == search:
-            print(f"{search}  {event['Summa']}")
+        if event[key] == value:
+            print(f"{value}  {event['Summa']}")
             total += float(event['Summa'])
     print(f"Yhteensä {round(total, 2)}")
-
-    
+    return round(total, 2)

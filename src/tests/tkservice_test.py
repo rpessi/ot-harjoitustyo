@@ -7,7 +7,7 @@ class TestTKService(unittest.TestCase):
     def setUp(self):
         dirname = os.path.dirname(__file__)
         self.data = os.path.join(dirname, "test_file_short.csv")
-        self.account = TKService("TEST", self.data)
+        self.account = TKService("TEST")
         self.account.interests["NORDEA LAINAT 1"] = -500.0
         self.account.interests["NORDEA LAINAT 2"] = -1500.0
         self.account.loans["NORDEA LAINAT 1"] = -8485.83
@@ -77,6 +77,6 @@ class TestTKService(unittest.TestCase):
         self.assertEqual(round(total_expense, 2), -18375.21)
 
     def test_save_account_works(self):
-        result = save_account(self.account, test = True)
+        result = save_account(self.account, self.data, test = True)
         self.assertEqual(result, True)
 
