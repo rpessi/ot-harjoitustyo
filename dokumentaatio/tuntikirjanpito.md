@@ -25,4 +25,9 @@
 | 25.4. | 1,3    | Sovelluskehitys | Testejä tulostusfunktioille |
 | 25.4. | 2,9    | Dokumentaatio   | Käyttöohje |
 | 25.4. | 1,0    | Dokumentaatio   | Dokumentaation päivitys |
-| Yht.  | 59,95  | |  |
+| 26.4. | 1,8    | Sovelluskehitys | Suunnittelua |
+| 26.4. | 4,5    | Sovelluskehitys | Service / JSON-tallennus |
+| 26.4. | 1,0    | Sovelluskehitys | Koodin hinkkausta (Pylint) |
+| 26.4. | 1,0    | Sovelluskehitys | Käyttöliittymä / tapahtumahaku |
+| 27.4. | 2,5    | Sovellueskehitys| Tapahtumahaun manuaalitestausta |
+| Yht.  | 70,75  | |  |
