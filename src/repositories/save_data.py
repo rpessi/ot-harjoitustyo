@@ -45,7 +45,7 @@ def save_to_json(data, account):
         events[osat[0]].append({"Vuosi": osat[1][:4], "Kk": osat[1][5:7],
             "Summa": osat[2], "Nimi": osat[3], "Luokka": osat[4].replace("\n", ""),
             "Alaluokka": ""})
-    json_string = json.dumps(events, indent = 2)
+    json_string = json.dumps(events, indent = 2, ensure_ascii = False)
     name = account.name + ".json"
     with open(name, 'w', encoding = 'UTF-8') as file:
         file.write(json_string) #tallentaa repon juureen, under construction
