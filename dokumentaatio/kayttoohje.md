@@ -38,10 +38,9 @@ Nordean tiliotteen otsikkorivi on seuraava: Kirjauspäivä;Määrä;Maksaja;Maks
 Esimerkki tilitapahtumasta: 2022/12/22;-39,89;FI90 2133 2000 2033 33;;;Elisa Oyj;;EUR
 
 Ohjelman käyttämät kentät ovat Kirjauspäivä, Määrä ja Otsikko. Esimerkkitapahtumasta otetaan talteen siis seuraavat tiedot:
-2022/12/22;-39,89;;;;Elisa Oyj;; eli ensimmäinen, toinen ja kuudes kenttä. (Tässä versiossa päivämäärä tallennetaan, mutta
-tietoa ei vielä käytetä mihinkään, joten ei haittaa vaikka päivämääräkenttä olisi eri muodossa tai puuttuisi kokonaan.)
-Voit siis halutessasi muokata verkkopankkiotteestasi tiedoston, jossa on otsikkorivinä Nordean otsikkorivin mukainen rivi
-ja sen jälkeen tilitapahtumariveinä joko 2022/12/22;-39,89;;;;Elisa Oyj;; tai ;-39,89;;;;Elisa Oyj;; -muotoisia rivejä.
+2022/12/22;-39,89;;;;Elisa Oyj;; eli ensimmäinen, toinen ja kuudes kenttä. Voit siis halutessasi muokata verkkopankkiotteestasi
+tiedoston, jossa on otsikkorivinä Nordean otsikkorivin mukainen rivi ja sen jälkeen tilitapahtumariveinä 
+2022/12/22;-39,89;;;;Elisa Oyj;; -muotoisia rivejä.
 
 Jos sinulla on lainoja, ohjelma kysyy tilitapahtumien luokittelun yhteydessä lainojen korkojen osuutta. Korkoja ei kysytä
 jokaisesta lainatapahtumasta erikseen, vaan korkojen määrää kysytään kokonaismääränä. Jos sinulla on esimerkiksi tilitapahtumat
