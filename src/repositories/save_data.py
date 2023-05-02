@@ -28,20 +28,20 @@ def save_account(account, file, test = False):
         data_file_path = os.path.join(dirname, "account_data.csv")
         with open(data_file_path, "a", encoding = "utf8") as writefile:
             writefile.writelines(new_lines)
-        save_to_json(new_lines, account)
+        save_to_json(new_lines, account.name)
         print(" Tiedot on tallennettu.")
     else:
         data_file_path = os.path.join(dirname, "../tests", "test_account_data.csv")
         with open(data_file_path, "w", encoding = "utf8") as writefile:
             writefile.writelines(new_lines)
-    save_account_name(account)
+    save_account_name(account.name)
     return True
 
-def save_account_name(account):
+def save_account_name(name):
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, "account_names.csv")
     with open(data_file_path, "a", encoding = "utf8") as writefile:
-        writefile.write(f"{account.name}\n")
+        writefile.write(f"{name}\n")
 
 def get_account_names():
     accounts = []
@@ -54,7 +54,7 @@ def get_account_names():
                 accounts.append(line.replace("\n", ""))
     return accounts
 
-def save_to_json(data, account):
+def save_to_json(data:list, name):
     events = {}
     for rivi in data:
         osat = rivi.split(";")
@@ -64,13 +64,17 @@ def save_to_json(data, account):
             "Summa": osat[2], "Nimi": osat[3], "Luokka": osat[4].replace("\n", ""),
             "Alaluokka": ""})
     json_string = json.dumps(events, indent = 2, ensure_ascii = False)
-    name = account.name + ".json"
-    with open(name, 'w', encoding = 'UTF-8') as file:
+    dirname = os.path.dirname(__file__)
+    name = name + ".json"
+    data_file_path = os.path.join(dirname, name)
+    with open(data_file_path, 'w', encoding = 'UTF-8') as file:
         file.write(json_string) #tallentaa repon juureen, under construction
 
 def read_from_json(name, key, value):
+    dirname = os.path.dirname(__file__)
     filename = name + ".json"
-    with open(filename, 'r', encoding = 'UTF-8') as file:
+    data_file_path = os.path.join(dirname, filename)
+    with open(data_file_path, 'r', encoding = 'UTF-8') as file:
         events = json.loads(file.read())
         total = 0
     for event in events[name]:
@@ -82,3 +86,24 @@ def read_from_json(name, key, value):
     else:
         print(f" Tililtä {name} ei löydy tapahtumia haulla '{value}'.")
     return round(total, 2)
+
+def combine_to_json(accounts:list, name):
+    if accounts == []:
+        print("\n Tallennettuja tilejä ei vielä ole.")
+        return
+    new_lines = []
+    dirname = os.path.dirname(__file__)
+    data_file_path = os.path.join(dirname, "account_data.csv")
+    with open(data_file_path, "rt", encoding = "utf_8") as readfile:
+        lines = readfile.readlines()
+        for line in lines:
+            place = line.find(";")
+            if line[:place] in accounts:
+                new_lines.append(name + line[place:])
+    save_to_json(new_lines, name)
+    if name not in get_account_names():
+        save_account_name(name)
+    print("\n Tilien tapahtumat on nyt yhdistetty tilille Yhdistetty.")
+
+
+

@@ -38,28 +38,34 @@ def run():
         print(f" 2 - Tulosta lisätyn tiedoston kassavirtalaskelma")
         print(f" 3 - Tulosta lisätyn tiedoston tuloslaskelma")
         print(f" 4 - Etsi tapahtumia nimellä")
-        print(f" 5 - Lopeta")
+        print(f" 5 - Yhdistä kaikki tilit")
+        print(f" 6 - Lopeta")
         choice = input(" Valinta (anna numero, hyväksy enterillä): ")
-        if choice in ["1", "2", "3", "4", "5"]:
+        if choice in ["1", "2", "3", "4", "5", "6"]:
             if choice == "1":
                 file, name = get_file()
                 account = process_file(file, name)
                 file_received = True
             elif choice == "2":
                 if not file_received:
-                    print()
-                    print(" Lisää ensin tiedosto!")
+                    print("\n Lisää ensin tiedosto!")
                     print(" Valitettavasti tämä toiminto ei vielä käytä pysyväisesti tallennettuja tietoja.")
                 else:
                     account.print_cashflow()
             elif choice == "3":
                 if not file_received:
-                    print()
-                    print(" Lisää ensin tiedosto!")
+                    print("\n Lisää ensin tiedosto!")
                     print(" Valitettavasti tämä toiminto ei vielä käytä pysyväisesti tallennettuja tietoja.")
                 else:
                     account.print_result()
             elif choice == "4":
                 ui.queries.search_events_by_name()
             elif choice == "5":
+                accounts = repositories.save_data.get_account_names()
+                combined = []
+                for account in accounts:
+                    if account != "Yhdistetty":
+                        combined.append(account)
+                repositories.save_data.combine_to_json(combined, "Yhdistetty")
+            elif choice == "6":
                 exit()

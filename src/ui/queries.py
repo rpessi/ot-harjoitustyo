@@ -1,23 +1,22 @@
 from services.tk_service import TKService
 from repositories.save_data import read_from_json as rfs
 from repositories.save_data import get_account_names
+import cowsay
 
 def choose_offset_account(self):
     accounts = [0, "Tulot", "Menot", "Oma tili", "Lainat"]
-    print(" Luokitellaan tilille tulevat tapahtumat.")
-    print()
+    print(" Luokitellaan tilille tulevat tapahtumat. \n")
     for item in self.money_in.items():
         while True:
-            print(f" Anna vastatatili tapahtumalle {item[0]}: {item[1]:.2f}.")
+            print(f" Anna luokittelu tapahtumalle {item[0]}: {item[1]:.2f}.")
             offset = input(" Vastatili (1: Tulot, 2: Menot, 3: Oma tili, 4: Lainat): ")
             if offset in ["1", "2", "3", "4"] and item[0] not in self.offset_account_in:
                 self.offset_account_in[item[0]] = accounts[int(offset)]
                 break
-    print(" Luokitellaan tililtä lähtevät tapahtumat.")
-    print()
+    print(" Luokitellaan tililtä lähtevät tapahtumat. \n")
     for item in self.money_out.items():
         while True:
-            print(f" Anna vastatatili tapahtumalle {item[0]}: {item[1]:.2f}.")
+            print(f" Anna luokittelu tapahtumalle {item[0]}: {item[1]:.2f}.")
             offset = input(" Vastatili (1: Tulot, 2: Menot, 3: Oma tili, 4: Lainat): ")
             if offset in ["1", "2", "3", "4"] and item[0] not in self.offset_account_out:
                 if offset == "4":
@@ -44,14 +43,14 @@ def choose_offset_account(self):
                     break
     print(" Kaikki tapahtumat on luokiteltu.")
 
-def search_events_by_name(): #tarkistukset puuttuu, kaatuu väärillä syötteillä
+def search_events_by_name(): 
     accounts = get_account_names()
-    if len(accounts) == 0:
+    if accounts == []:
         print(" Tallennettuja tilejä ei löydy. Aloita tilitiedoston antamisella.")
         return
     options = list(range(1, len(accounts)+1))
     while True:
-        print(" Voit etsiä tapahtumia seuraavilta tallennetuilta tileiltä:")
+        cowsay.cow("Voit etsiä tapahtumia seuraavilta tileiltä:")
         for i in range(len(accounts)):
             print(f" {i+1}: {accounts[i]}")
         choice = input(" Valintasi: ")
