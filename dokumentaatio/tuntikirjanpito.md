@@ -29,5 +29,10 @@
 | 26.4. | 4,5    | Sovelluskehitys | Service / JSON-tallennus |
 | 26.4. | 1,0    | Sovelluskehitys | Koodin hinkkausta (Pylint) |
 | 26.4. | 1,0    | Sovelluskehitys | Käyttöliittymä / tapahtumahaku |
-| 27.4. | 2,5    | Sovellueskehitys| Tapahtumahaun manuaalitestausta |
-| Yht.  | 70,75  | |  |
+| 27.4. | 2,5    | Sovelluskehitys | Tapahtumahaun manuaalitestausta |
+| 2.5.  | 3,5    | Sovelluskehitys | Paranneltu tapahtumahaun toimintaa |
+| 2.5.  | 0,8    | Sovelluskehitys | Paranneltu tulostuksia |
+| 2.5.  | 3,6    | Sovelluskehitys | Tilitapahtumien yhdistäminen ja siihen liittyvät muutokset |
+| 2.5.  | 1,7    | Dokumentaatio   | Käyttöohjeen päivitys ja laajennus |
+| 2.5.  | 0,7    | Dokumentaatio   | Changelog, tuntikirjanpito, vaatimusmäärittely | 
+| Yht.  | 81,05  | |  |
