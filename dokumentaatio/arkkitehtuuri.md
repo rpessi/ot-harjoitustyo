@@ -31,8 +31,12 @@ ohjelman pysyväistallennuksesta vastaavat toiminnot.
 
 ## Päätoiminnallisuus
 
-Ohjelman toiminnallisuudet rajoittuvat tällä hetkellä tilapäistallennettujen tietojen käyttöön. Ohjelma tallentaa tietoja
-pysyväistiedostoon, mutta näitä tietoja ei päästä vielä käyttämään. Kuvataan tämänhetkistä toimintaa ohjelman käynnistyessä.
+Ohjelmassa tällä hetkellä olevat toiminnot ovat tiedoston lisääminen, kassavirtalaskelman tulostus, tuloslaskelman tulostus, tilitietojen
+haku ja tilien yhdistäminen. Ohjelman käyttö edellyttää aluksi tilitiedoston lisäämistä. Ohjelma pyytää käyttäjää luokittelemaan tilitapahtumat
+ja tämän jälkeen tilitiedot tallennetaan pysyväismuistiin. Toistaiseksi kassavirtalaskelman ja tuloslaskelman tulostus tapahtuu tilapäisesti
+tallennettujen tietojen varassa. Tilitietojen haku ja tilien yhdistäminen perustuu pysyväisesti tallennettuun tietoon. Tilitietoja voi tällä
+hetkellä hakea tilitapahtuman nimen perusteella. Jos useampia tilejä on tallennettu, näiden tiedot on mahdollista yhdistää. Yhdistämisen
+jälkeen tapahtumahaussa näkyy muiden tilien joukossa tili Yhdistetty, josta voi hakea tilitapahtumia samaan tapaan kuin muiltakin tileiltä.
 
 ### Ohjelman käynnistyminen
 
@@ -62,8 +66,38 @@ sequenceDiagram
    Repositories-->UI: "True"
    UI-->UI: "account"
    UI->>User: "Valitse toiminto: "
-   User->>UI: "4"
+   User->>UI: "6"
    UI->>UI: exit()
 ```
+
+### Tilitapahtumien haku
+
+```mermaid
+sequenceDiagram
+   actor USER
+   participant UI.tui
+   Participant UI.queries
+   participant Service
+   participant Repositories
+   UI.tui->>User: "Valitse toiminto: "
+   User-->UI.tui: "4"
+   UI.tui->>UI.queries: search_events_by_name()
+   UI.queries->>Repositories: get_account_names()
+   Repositories-->UI.queries: accounts
+   UI.queries->>USER: "Voit etsiä tapahtumia seuraavilta tileiltä: 1: Matti 2: Maija. Valintasi: "
+   USER-->UI.queries: "2"
+   UI.queries->>USER: "Valittu tili: Maija. Anna tapahtuman nimi: "
+   USER-->UI.queries: "eli"
+   UI.queries-->USER: "3/2022 Elisa 29.50 \n 4/2022 Elisa 32.50 \n Yhteensä 62.00"
+   UI.queries->>USER: "Valitse: Uusi haku samalta tililtä (1) tai Takaisin päävalikkoon (2): "
+   USER-->UI.queries: "2"
+   UI.queries-->UI.tui: return
+   UI.tui->>User: "Valitse toiminto: "
+   User->>UI.tui: "6"
+   UI.tui->>UI.tui: exit()
+```
+   
+   
+   
 
 
