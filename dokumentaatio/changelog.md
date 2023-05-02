@@ -31,3 +31,15 @@
  - Parannettu tiedostopolkuja
  - Lisätty serviceen funktio, joka tulostaa tuloslaskelman ja tehty tälle testit.
  - Lisätty testejä servicen funktiolle, joka tulostaa kassavirtalaskelman.
+ 
+## Viikko 6
+
+ - Lisätty annettujen tilitietojen tallennus JSON-muodossa
+ - Lisätty mahdollisuus etsiä tallennetuista tilitiedoista tapahtumia tilin nimen ja tapahtuman (osittaisen) nimen
+   perusteella.
+ - Lisätty mahdollisuus yhdistää tallennetut tilit. Tämän jälkeen tili Yhdistetty näkyy tapahtumahaussa muiden tilien tapaan
+   ja siltä voi hakea tapahtumia kuiten muiltakin tileiltä.
+ - Lisätty tapahtumahaku ja tilien yhdistäminen käyttöliittymän päävalikkoon. Tehty kyselyfunktio tapahtumahakuja varten.
+ - Paranneltu edelleen tallennusten tiedostopolkuja.
+ - Lisätty tapahtumahakuun tallennettujen tiedostojen luettelo valikkona, jotta käyttäjä ei pääse väärällä haulla kaatamaan ohjelmaa.
+ 
