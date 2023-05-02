@@ -73,7 +73,7 @@ Ohjelma käynnistyy terminaalissa ja antaa toimintavalikon:
 Kun käytät ohjelmaa ensimmäistä kertaa, pitää sinun aluksi antaa ohjalmelle tallennettava tiedosto. Ohjelma kysyy tiedoston nimeä
 ja sijaintia ja pyytää sinua myös antamaan tilille nimen. Tiedoston antamisen jälkeen ohjelma pyytää sinulta tilitapahtumien
 luokittelua. Tällä hetkellä luokittelussa ovat vaihtoehtoina vain Tulot, Menot, Oma tili ja Lainat. Kun olet luokitellut kaikki
-tilitapahtumat, pääset käyttämään valikon vaihtoehtoja 2-4.
+tilitapahtumat, pääset käyttämään valikon vaihtoehtoja 2-5. Valinnasta 5 on hyötyä vain, jos olet tallettanut vähintään kaksi tiliä.
 
 Ohjelma käyttää tilapäisesti tallennettuja tietoja vaihtoehdoissa 2-3. Nämä valinnat tarjoavat mahdollisuuden tulostaa ruudulle viimeksi
 tallennetun tilin Kassavirtalaskelman ja Tuloslaskelman. Kassavirtalaskelmassa on kaikki tilille tulevat panot ja tililtä lähtevät
@@ -93,6 +93,13 @@ sen alkuosalla ja käyttää pieniä kirjaimia tähän tapaan:
 ![](./kuvat/tapahtumat.jpeg)
 
 Ohjelma tulostaa löydetyt tapahtumat, jonka jälkeen voit jatkaa tapahtumien hakua samalta tililtä tai palata päävalikkoon.
+
+Jos olet tallettanut useampia tilejä, voit valita päävalikossa valinnan 5. Tämän jälkeen tapahtumahaussa näkyy myös tili Yhdistetty,
+jolta voit tehdä tapahtumahakuja samaan tapaan kuin muiltakin tileiltä.
+
+![](./kuvat/yhdistetty.jpeg)
+
+Yhdistetyllä tilillä näkyy koottuna kaikkien muiden tilien samannimiset tapahtumat.
 
 
 
