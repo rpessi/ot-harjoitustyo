@@ -5,7 +5,7 @@ import repositories.save_data
 
 def get_file():
     while True:
-        file = input( "Anna csv-tiedoston nimi ja polku, esim. src/short.csv: ")
+        file = input( " Anna csv-tiedoston nimi ja polku, esim. src/short.csv: ")
         if check_file(file):
             name = input(" Anna tilin nimi: ")
             return tuple((file, name))
@@ -48,13 +48,15 @@ def run():
             elif choice == "2":
                 if not file_received:
                     print()
-                    print(" o_O Lisää ensin tiedosto! o_O")
+                    print(" Lisää ensin tiedosto!")
+                    print(" Valitettavasti tämä toiminto ei vielä käytä pysyväisesti tallennettuja tietoja.")
                 else:
                     account.print_cashflow()
             elif choice == "3":
                 if not file_received:
                     print()
-                    print(" o_O Lisää ensin tiedosto! o_O")
+                    print(" Lisää ensin tiedosto!")
+                    print(" Valitettavasti tämä toiminto ei vielä käytä pysyväisesti tallennettuja tietoja.")
                 else:
                     account.print_result()
             elif choice == "4":

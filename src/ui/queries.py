@@ -1,5 +1,6 @@
 from services.tk_service import TKService
 from repositories.save_data import read_from_json as rfs
+from repositories.save_data import get_account_names
 
 def choose_offset_account(self):
     accounts = [0, "Tulot", "Menot", "Oma tili", "Lainat"]
@@ -44,9 +45,33 @@ def choose_offset_account(self):
     print(" Kaikki tapahtumat on luokiteltu.")
 
 def search_events_by_name(): #tarkistukset puuttuu, kaatuu väärillä syötteillä
-    print(" Voit etsiä tapahtumia tallennetuilta tileiltä. Anna tili, jolta haluat hakea tietoja.")
-    name = input(" Tilin nimi: ")
-    key = "Nimi"
-    print(" Anna tapahtuman nimi, jolla haluat etsiä.")
-    value = input(" Tapahtuman nimi: ")
-    rfs(name, key, value)
+    accounts = get_account_names()
+    if len(accounts) == 0:
+        print(" Tallennettuja tilejä ei löydy. Aloita tilitiedoston antamisella.")
+        return
+    options = list(range(1, len(accounts)+1))
+    while True:
+        print(" Voit etsiä tapahtumia seuraavilta tallennetuilta tileiltä:")
+        for i in range(len(accounts)):
+            print(f" {i+1}: {accounts[i]}")
+        choice = input(" Valintasi: ")
+        if choice.isdigit():
+            if int(choice) in options:
+                name = accounts[int(choice)-1]
+                key = "Nimi"
+                while True:
+                    print(f" Valittu tili: {name}")
+                    print(" Anna tapahtuman nimi (tai sen alku), jolla haluat etsiä.") #nääkin vois myöhemmin tarjota listana
+                    value = input(" Tapahtuman nimi: ")
+                    rfs(name, key, value)
+                    next_choice = input(" Valitse: Uusi haku samalta tililtä (1) tai Takaisin päävalikkoon (2): ")
+                    if next_choice == "1":
+                        continue
+                    else:
+                        return
+            else:
+                print(" Valitse tarjolla olevista tileistä.")
+                continue
+        else:
+            print(" Valitse annetuista tileistä. Käytä valintaan tilin numeroa.")
+            continue
