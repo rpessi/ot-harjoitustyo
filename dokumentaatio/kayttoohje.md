@@ -68,7 +68,7 @@ tapahtumia yhtenä kokonaisuutena, yhdistä tilien tapahtumat samaan csv-tiedost
 
 Ohjelma käynnistyy terminaalissa ja antaa toimintavalikon:
 
-![](./kuvat/aloitusvalikko.png)
+![](./kuvat/aloitusvalikko.jpeg)
 
 Kun käytät ohjelmaa ensimmäistä kertaa, pitää sinun aluksi antaa ohjalmelle tallennettava tiedosto. Ohjelma kysyy tiedoston nimeä
 ja sijaintia ja pyytää sinua myös antamaan tilille nimen. Tiedoston antamisen jälkeen ohjelma pyytää sinulta tilitapahtumien
@@ -84,13 +84,13 @@ joten voit tehdä kyselyjä myös aiemmin talletetuista tilitiedoista.
 
 Kun olet antanut tilitietoja tallennettavaksi ja valitset päävalikosta vaihtoehdon 4, tulet tilitapahtumien hakuun:
 
-![](./kuvat/tapahtumahaku.png)
+![](./kuvat/tapahtumahaku.jpeg)
 
 Ohjelma näyttää, minkä tilien tietoja on tallennettu ja tarjoaa mahdollisuutta hakea tapahtumia tietyltä tililtä. Toistaiseksi on
 tarjolla vain tapahtuman haku nimellä. Tapahtuman nimi on tiliotteessa näkyvä maksaja/maksunsaaja. Voit hakea tapahtumaa myös
 sen alkuosalla ja käyttää pieniä kirjaimia tähän tapaan: 
 
-![](./kuvat/tapahtumat.png)
+![](./kuvat/tapahtumat.jpeg)
 
 Ohjelma tulostaa löydetyt tapahtumat, jonka jälkeen voit jatkaa tapahtumien hakua samalta tililtä tai palata päävalikkoon.
 
