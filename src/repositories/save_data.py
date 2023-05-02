@@ -9,10 +9,16 @@ def save_account(account, file, test = False):
         line = line.split(";")
         amount = line[1].replace(",", ".")
         if line[1][0] == "-":
+            # join on mukava: https://www.w3schools.com/python/ref_string_join.asp
+            # sitä voi käyttää tässä sekä ; että \n kanssa
+
+            # sen lisäksi rakenteessa on paljon toistoa, joka rivissä toistuu account.name, line[0] ja line[5].
+            # toistuvuus tekee vaikeammaksi nähdä mitkä kohdat muuttuvat
             if account.offset_account_out[line[5]] != "Lainat":
                 new_lines.append(account.name + ";" + line[0] + ";" + amount + ";" + line[5] + ";" \
                     + account.offset_account_out[line[5]] + "\n")
             else:
+                # tässä ei oikeastaan tarvitse \, koska rivinvaihto on sulkujen sisällä
                 interest = round(float(amount) * account.interests[line[5]] \
                                  / account.loans[line[5]], 2)
                 payment = round(float(amount) - interest, 2)

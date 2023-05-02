@@ -17,6 +17,9 @@ class TKService:
             line = line.split(";")
             amount = float(line[1].replace(",", "."))
             if amount < 0:
+                # sen sijaan että tarkistaa onko dictissä jo arvoa,
+                # voisi käyttää defaultdictiä (defaultdict(int))
+                # https://docs.python.org/3/library/collections.html#defaultdict-objects
                 if line[5] not in self.money_out:
                     self.money_out[line[5]] = 0
                 self.money_out[line[5]] += amount

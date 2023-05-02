@@ -1,3 +1,4 @@
+# yleensä .gitignoressa järjestetään asiat jotenkin asiakokonaisuuksittain, helpottaa elämää
 .pytest_cache
 __pycache__
 .coverage
@@ -6,4 +7,7 @@ poetry-testi/
 harjoitustyo/
 src/tests/test_account_data.csv
 /gui_outcast
+# tää ei taida toimia ku se tiedosto on jo olemassa
 src/repositories/account_data.csv
+# jos koodi generoi tiedostoja niin ne on hyvä laittaa .gitignoreen
+/*.json

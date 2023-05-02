@@ -15,7 +15,7 @@ def get_file():
 def check_file(file):
     try:
         with open(file) as file_2:
-            file_2.read() 
+            file_2.read()
     except:
         return False
     if file[-4:] != ".csv":
@@ -31,9 +31,13 @@ def process_file(file, name):
     return account
 
 def run():
+    # periaatteessa voisi laittaa tähän vaikka account = None,
+    # ja sitten tarkistaa accountin arvo apumuuttujan käyttämisen sijaan.
+    # ylimääräisen muuttujan käyttäminen ei tuo tässä lisäarvoa
     file_received = False
-    while True: 
+    while True:
         cowsay.cow(" Valitse toiminto! ")
+        # näistä voi poistaa f:t
         print(f" 1 - Lisää tiedosto")
         print(f" 2 - Tulosta lisätyn tiedoston kassavirtalaskelma")
         print(f" 3 - Tulosta lisätyn tiedoston tuloslaskelma")
@@ -45,8 +49,12 @@ def run():
                 file, name = get_file()
                 account = process_file(file, name)
                 file_received = True
+            # Tässä on kaksi kertaa `if not file_received`, choice 2 ja 3 voisi vaikka yhdistää
+            # samaan iffiin jonka sisällä katsotaan onko tiedostoa annettu, ja sitten
+            # katsotaan onko 2 vai 3
             elif choice == "2":
                 if not file_received:
+                    # tyhjän printin voisi korvata laittamalla seuraavan eteen \n
                     print()
                     print(" o_O Lisää ensin tiedosto! o_O")
                 else:
