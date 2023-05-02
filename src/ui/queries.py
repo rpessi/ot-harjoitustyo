@@ -60,7 +60,7 @@ def search_events_by_name(): #tarkistukset puuttuu, kaatuu väärillä syötteil
                 name = accounts[int(choice)-1]
                 key = "Nimi"
                 while True:
-                    print(f" Valittu tili: {name}")
+                    print(f" Valittu tili: {name} \n")
                     print(" Anna tapahtuman nimi (tai sen alku), jolla haluat etsiä.") #nääkin vois myöhemmin tarjota listana
                     value = input(" Tapahtuman nimi: ")
                     rfs(name, key, value)
