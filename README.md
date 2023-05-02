@@ -1,6 +1,8 @@
 # Talouskatsaus
 
-Ohjelman tarkoitus on koota yhteenveto käyttäjän antamasta tiliotteesta. Ohjelma on tarkoitettu yhdelle käyttäjälle.
+Ohjelman tarkoitus on koota yhteenveto käyttäjän antamasta tiliotteesta. Ohjelmaa voi käyttää myös tietojen yhdistelyyn useammalta
+eri tililtä. Ohjelma on tarkoitettu yhdelle käyttäjälle, mutta toki siihen voi tallentaa kahdenkin ihmisen tilitiedot, jos halutaan
+saada kokonaiskuva perheen taloudesta.
 
 [Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/viikko5)
 
