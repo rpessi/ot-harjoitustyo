@@ -41,14 +41,23 @@ osuuden omasta päästä.
 Ohjelma osaa tällä hetkellä lukea vain Nordean tiliotteita. Jos haluat kokeilla ohjelmaa jonkun muun pankin tiliotteella,
 joudut muokkaamaan tiliotetta esimerkiksi tekstieditorissa.
 
-Nordean tiliotteen otsikkorivi on seuraava: Kirjauspäivä;Määrä;Maksaja;Maksunsaaja;Nimi;Otsikko;Viitenumero;Valuutta
-
-Esimerkki tilitapahtumasta: 2022/12/22;-39,89;FI90 2133 2000 2033 33;;;Elisa Oyj;;EUR
-
+Nordean tiliotteen otsikkorivi on seuraava: 
+```
+Kirjauspäivä;Määrä;Maksaja;Maksunsaaja;Nimi;Otsikko;Viitenumero;Valuutta
+```
+Esimerkki tilitapahtumasta: 
+```
+2022/12/22;-39,89;FI90 2133 2000 2033 33;;;Elisa Oyj;;EUR
+```
 Ohjelman käyttämät kentät ovat Kirjauspäivä, Määrä ja Otsikko. Esimerkkitapahtumasta otetaan talteen siis seuraavat tiedot:
-2022/12/22;-39,89;;;;Elisa Oyj;; eli ensimmäinen, toinen ja kuudes kenttä. Voit siis halutessasi muokata verkkopankkiotteestasi
-tiedoston, jossa on otsikkorivinä Nordean otsikkorivin mukainen rivi ja sen jälkeen tilitapahtumariveinä 
-2022/12/22;-39,89;;;;Elisa Oyj;; -muotoisia rivejä.
+```
+2022/12/22;-39,89;;;;Elisa Oyj;;
+```
+eli ensimmäinen, toinen ja kuudes kenttä. Voit siis halutessasi muokata verkkopankkiotteestasi tiedoston, jossa on otsikkorivinä 
+Nordean otsikkorivin mukainen rivi ja sen jälkeen tilitapahtumariveinä seuraavan muotoisia rivejä:
+```
+2022/12/22;-39,89;;;;Elisa Oyj;;
+```
 
 Kirjauspäivä-kentästä ohjelma tallentaa vuoden ([:4]) ja kuukauden ([5:7]). Tällä hetkellä näitä tietoja ei käytetä hakuehtoina,
 mutta tilitapahtumien haku käyttää näitä tietoja hakutulosten tulostuksessa.
