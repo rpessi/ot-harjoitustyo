@@ -56,7 +56,7 @@ def read_from_json(name, key, value):
         events = json.loads(file.read())
         total = 0
     for event in events[name]:
-        if event[key].startswith(value):
+        if event[key].casefold().startswith(value.casefold()):
             print(f" {event['Kk']}/{event['Vuosi']} {event[key]}  {event['Summa']}")
             total += float(event['Summa'])
     print(f" Yhteensä {round(total, 2)}")
