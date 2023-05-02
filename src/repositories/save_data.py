@@ -1,5 +1,6 @@
 import os
 import json
+from config import CSV_FILENAME, ACCOUNTS_FILENAME
 
 def save_account(account, file, test = False):
     new_lines = []
@@ -25,13 +26,13 @@ def save_account(account, file, test = False):
                 + account.offset_account_in[line[5]] + "\n")
     dirname = os.path.dirname(__file__)
     if not test:
-        data_file_path = os.path.join(dirname, "account_data.csv")
+        data_file_path = os.path.join(dirname, CSV_FILENAME)
         with open(data_file_path, "a", encoding = "utf8") as writefile:
             writefile.writelines(new_lines)
         save_to_json(new_lines, account.name)
         print(" Tiedot on tallennettu.")
     else:
-        data_file_path = os.path.join(dirname, "../tests", "test_account_data.csv")
+        data_file_path = os.path.join(dirname, "../tests", CSV_FILENAME)
         with open(data_file_path, "w", encoding = "utf8") as writefile:
             writefile.writelines(new_lines)
     save_account_name(account.name)
@@ -39,14 +40,14 @@ def save_account(account, file, test = False):
 
 def save_account_name(name):
     dirname = os.path.dirname(__file__)
-    data_file_path = os.path.join(dirname, "account_names.csv")
+    data_file_path = os.path.join(dirname, ACCOUNTS_FILENAME)
     with open(data_file_path, "a", encoding = "utf8") as writefile:
         writefile.write(f"{name}\n")
 
 def get_account_names():
     accounts = []
     dirname = os.path.dirname(__file__)
-    data_file_path = os.path.join(dirname, "account_names.csv")
+    data_file_path = os.path.join(dirname, ACCOUNTS_FILENAME)
     with open(data_file_path, "r", encoding = "utf8") as file:
         lines = file.readlines()
         for line in lines:
@@ -93,7 +94,7 @@ def combine_to_json(accounts:list, name):
         return
     new_lines = []
     dirname = os.path.dirname(__file__)
-    data_file_path = os.path.join(dirname, "account_data.csv")
+    data_file_path = os.path.join(dirname, CSV_FILENAME)
     with open(data_file_path, "rt", encoding = "utf_8") as readfile:
         lines = readfile.readlines()
         for line in lines:
@@ -104,6 +105,3 @@ def combine_to_json(accounts:list, name):
     if name not in get_account_names():
         save_account_name(name)
     print("\n Tilien tapahtumat on nyt yhdistetty tilille Yhdistetty.")
-
-
-
