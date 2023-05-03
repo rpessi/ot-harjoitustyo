@@ -74,7 +74,7 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-   actor USER
+   actor User
    participant UI.tui
    Participant UI.queries
    participant Service
@@ -84,13 +84,13 @@ sequenceDiagram
    UI.tui->>UI.queries: search_events_by_name()
    UI.queries->>Repositories: get_account_names()
    Repositories-->UI.queries: accounts
-   UI.queries->>USER: "Voit etsiä tapahtumia seuraavilta tileiltä: 1: Matti 2: Maija. Valintasi: "
-   USER-->UI.queries: "2"
-   UI.queries->>USER: "Valittu tili: Maija. Anna tapahtuman nimi: "
-   USER-->UI.queries: "eli"
-   UI.queries-->USER: "3/2022 Elisa 29.50 \n 4/2022 Elisa 32.50 \n Yhteensä 62.00"
-   UI.queries->>USER: "Valitse: Uusi haku samalta tililtä (1) tai Takaisin päävalikkoon (2): "
-   USER-->UI.queries: "2"
+   UI.queries->>User: "Voit etsiä tapahtumia seuraavilta tileiltä: 1: Matti 2: Maija. Valintasi: "
+   User-->UI.queries: "2"
+   UI.queries->>User: "Valittu tili: Maija. Anna tapahtuman nimi: "
+   User-->UI.queries: "eli"
+   UI.queries-->User: "3/2022 Elisa 29.50 \n 4/2022 Elisa 32.50 \n Yhteensä 62.00"
+   UI.queries->>User: "Valitse: Uusi haku samalta tililtä (1) tai Takaisin päävalikkoon (2): "
+   User-->UI.queries: "2"
    UI.queries-->UI.tui: return
    UI.tui->>User: "Valitse toiminto: "
    User->>UI.tui: "6"
