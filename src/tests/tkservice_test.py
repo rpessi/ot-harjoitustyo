@@ -1,7 +1,7 @@
 import unittest
 from services.tk_service import TKService
 from repositories.save_data import process_account, get_account_names, read_from_json, combine_to_json
-from repositories.save_data import combine_to_json
+from repositories.save_data import combine_to_json, convert_from_s_pankki
 import os
 from config import CSV_FILENAME, ACCOUNTS_FILENAME
 
@@ -122,12 +122,10 @@ class TestTKService(unittest.TestCase):
         self.assertEqual(result2, -999.63)
         self.assertEqual(result3, 0)
 
-
-
-
-
-
-
-        
-
-
+    def test_convert_from_spankki_works_correctly(self):
+        dirname = os.path.dirname(__file__)
+        data = os.path.join(dirname, "S-Pankki.csv")
+        newdata = convert_from_s_pankki(data)
+        datapath = os.path.join(dirname, newdata)
+        result = os.path.isfile(datapath)
+        self.assertEqual(result, True)

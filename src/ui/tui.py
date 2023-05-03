@@ -2,7 +2,7 @@ from services.tk_service import TKService
 import cowsay
 import ui.queries
 import repositories.save_data
-from repositories.save_data import get_account_names
+from repositories.save_data import get_account_names, convert_from_s_pankki
 
 def get_file():
     while True:
@@ -71,4 +71,5 @@ def run():
                         combined.append(account)
                 repositories.save_data.combine_to_json(combined, "Yhdistetty")
             elif choice == "6":
+                #convert_from_s_pankki("S-Pankki.csv")
                 exit()

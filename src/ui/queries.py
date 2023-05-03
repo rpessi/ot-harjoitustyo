@@ -1,5 +1,5 @@
 from services.tk_service import TKService
-from repositories.save_data import read_from_json as rfs
+from repositories.save_data import read_from_json as rfj
 from repositories.save_data import get_account_names
 import cowsay
 
@@ -22,10 +22,8 @@ def choose_offset_account(self):
                 if offset == "4":
                     while True:
                         interest = input(" Anna korkojen määrä: ")
-                        interest = interest.replace("-", "")
-                        interest = interest.replace(",", ".")
-                        interest = interest.replace("€", "")
-                        if interest.replace(".", "").isdigit():
+                        interest = interest.replace("-", "").replace(",", ".").replace("€", "")
+                        if interest.isdigit():
                             interest = round(float(interest), 2)
                             self.offset_account_out[item[0]] = accounts[int(offset)]
                             if item[0] not in self.interests:
@@ -62,7 +60,7 @@ def search_events_by_name():
                     print(f" Valittu tili: {name} \n")
                     print(" Anna tapahtuman nimi (tai sen alku), jolla haluat etsiä.") #nääkin vois myöhemmin tarjota listana
                     value = input(" Tapahtuman nimi: ")
-                    rfs(name, key, value)
+                    rfj(name, key, value)
                     next_choice = input(" Valitse: Uusi haku samalta tililtä (1) tai Takaisin päävalikkoon (2): ")
                     if next_choice == "1":
                         continue
