@@ -11,3 +11,4 @@ except FileNotFoundError:
 CSV_FILENAME = os.getenv("CSV_FILENAME")
 ACCOUNTS_FILENAME = os.getenv("ACCOUNTS_FILENAME")
 JSON_PATH = os.getenv("JSON_PATH")
+CSV_CONVERTED = os.getenv("CSV_CONVERTED")
