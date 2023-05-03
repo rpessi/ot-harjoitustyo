@@ -77,12 +77,12 @@ tapahtumia yhtenä kokonaisuutena, yhdistä tilien tapahtumat samaan csv-tiedost
 
 Ohjelma käynnistyy terminaalissa ja antaa toimintavalikon:
 
-![](./kuvat/aloitusvalikko.jpeg)
+![](./kuvat/aloitusvalikko_alussa.jpeg)
 
-Kun käytät ohjelmaa ensimmäistä kertaa, pitää sinun aluksi antaa ohjalmelle tallennettava tiedosto. Ohjelma kysyy tiedoston nimeä
-ja sijaintia ja pyytää sinua myös antamaan tilille nimen. Tiedoston antamisen jälkeen ohjelma pyytää sinulta tilitapahtumien
-luokittelua. Tällä hetkellä luokittelussa ovat vaihtoehtoina vain Tulot, Menot, Oma tili ja Lainat. Kun olet luokitellut kaikki
-tilitapahtumat, pääset käyttämään valikon vaihtoehtoja 2-5. Valinnasta 5 on hyötyä vain, jos olet tallettanut vähintään kaksi tiliä.
+Toimintavalikko näyttää vain käytettävissäsi olevat vaihtoehdot. Alussa voit siis vain antaa tiedoston tai lopettaa ohjelman käytön.
+Kun olet antanut tiedoston, toimintavalikko laajenee:
+
+![](./kuvat/aloitusvalikko_tiedoston_jalkeen.jpeg)
 
 Ohjelma käyttää tilapäisesti tallennettuja tietoja vaihtoehdoissa 2-3. Nämä valinnat tarjoavat mahdollisuuden tulostaa ruudulle viimeksi
 tallennetun tilin Kassavirtalaskelman ja Tuloslaskelman. Kassavirtalaskelmassa on kaikki tilille tulevat panot ja tililtä lähtevät
@@ -91,7 +91,7 @@ tilisiirrot. Tuloslaskelmassa on poistettu näistä tapahtumista tilisiirrot omi
 Valikon vaihtoehdolla 4 pääset tekemään kyselyjä tallennetuista tilitiedoista. Tämä toiminto hyödyntää pysyvästi tallennettuja tietoja,
 joten voit tehdä kyselyjä myös aiemmin talletetuista tilitiedoista.
 
-Kun olet antanut tilitietoja tallennettavaksi ja valitset päävalikosta vaihtoehdon 4, tulet tilitapahtumien hakuun:
+Tilitapahtumien haku:
 
 ![](./kuvat/tapahtumahaku.jpeg)
 
@@ -101,14 +101,21 @@ sen alkuosalla ja käyttää pieniä kirjaimia tähän tapaan:
 
 ![](./kuvat/tapahtumat.jpeg)
 
-Ohjelma tulostaa löydetyt tapahtumat, jonka jälkeen voit jatkaa tapahtumien hakua samalta tililtä tai palata päävalikkoon.
+Ohjelma tulostaa löydetyt tapahtumat, minkä jälkeen voit jatkaa tapahtumien hakua samalta tililtä tai palata päävalikkoon.
 
-Jos olet tallettanut useampia tilejä, voit valita päävalikossa valinnan 5. Tämän jälkeen tapahtumahaussa näkyy myös tili Yhdistetty,
-jolta voit tehdä tapahtumahakuja samaan tapaan kuin muiltakin tileiltä.
+Kun olet tallettanut useampia tilejä, päävalikkoon tulee tarjolle vaihtoehto 5, tilien yhdistäminen.
+
+![](./kuvat/aloitusvalikko_useampi_tili.jpeg)
+
+Valinnalla 5 ohjelma yhdistää kaikki tallennetut tilit samalle tilille. Yhdistämisen jälkeen tapahtumahaussa näkyy aiemmin talletettujen
+tilien lisäksi myös tili Yhdistetty. Tililtä Yhdistetty voit tehdä tapahtumahakuja samaan tapaan kuin muiltakin tileiltä. 
 
 ![](./kuvat/yhdistetty.jpeg)
 
-Yhdistetyllä tilillä näkyy koottuna kaikkien muiden tilien samannimiset tapahtumat.
+Yhdistetyn tilin tapahtumahaulla saat helposti koottua yhteen samannimiset tapahtumat eri tileiltä:
+
+![](./kuvat/tapahtumat_yhdistetty.jpeg)
+
 
 
 
