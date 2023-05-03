@@ -7,3 +7,5 @@ harjoitustyo/
 src/tests/test_account_data.csv
 /gui_outcast
 src/repositories/account_data.csv
+src/repositories/*.json
+src/tests/*.json
