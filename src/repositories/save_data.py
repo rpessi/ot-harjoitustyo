@@ -2,40 +2,34 @@ import os
 import json
 from config import CSV_FILENAME, ACCOUNTS_FILENAME
 
-def save_account(account, file, test = False):
+def save_account(account, file):
     new_lines = []
+    name = account.name
     with open(file, "rt", encoding = "utf_8") as readfile:
         lines = readfile.readlines()
     for line in lines[1:]:  # skipataan otsikkorivi
         line = line.split(";")
+        date = line[0]
+        event = line[5]
         amount = line[1].replace(",", ".")
         if line[1][0] == "-":
-            if account.offset_account_out[line[5]] != "Lainat":
-                new_lines.append(account.name + ";" + line[0] + ";" + amount + ";" + line[5] + ";" \
-                    + account.offset_account_out[line[5]] + "\n")
+            offset = account.offset_account_out[event]
+            if offset != "Lainat":
+                new_lines.append(";".join((name, date, amount, event, offset)) + "\n")
             else:
-                interest = round(float(amount) * account.interests[line[5]] \
-                                 / account.loans[line[5]], 2)
+                interest = round(float(amount) * account.interests[event] / account.loans[event], 2)
                 payment = round(float(amount) - interest, 2)
-                new_lines.append(account.name + ";" + line[0] + ";" + str(payment) + ";" \
-                        + line[5] + ";" + "Lainat" + "\n")
-                new_lines.append(account.name + ";" + line[0] + ";" + str(interest) + ";" \
-                    + line[5] + ";" + "Menot" + "\n")
+                new_lines.append(";".join((name, date, str(payment), event, "Lainat")) + "\n")
+                new_lines.append(";".join((name, date, str(interest), event, "Menot")) + "\n")
         else:
-            new_lines.append(account.name + ";" + line[0] + ";" + amount + ";" + line[5] + ";" \
-                + account.offset_account_in[line[5]] + "\n")
-    dirname = os.path.dirname(__file__)
-    if not test:
-        data_file_path = os.path.join(dirname, CSV_FILENAME)
-        with open(data_file_path, "a", encoding = "utf8") as writefile:
-            writefile.writelines(new_lines)
-        save_to_json(new_lines, account.name)
-        print(" Tiedot on tallennettu.")
-    else:
-        data_file_path = os.path.join(dirname, "../tests", CSV_FILENAME)
-        with open(data_file_path, "w", encoding = "utf8") as writefile:
-            writefile.writelines(new_lines)
-    save_account_name(account.name)
+            offset = account.offset_account_in[event]
+            new_lines.append(";".join((name, date, amount, event, offset)) + "\n")
+    data_file_path = os.path.join(os.path.dirname(__file__), CSV_FILENAME)
+    with open(data_file_path, "a", encoding = "utf8") as writefile:
+        writefile.writelines(new_lines)
+    save_to_json(new_lines, name)
+    print(" Tiedot on tallennettu.")
+    save_account_name(name)
     return True
 
 def save_account_name(name):
