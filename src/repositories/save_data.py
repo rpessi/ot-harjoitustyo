@@ -48,6 +48,8 @@ def get_account_names():
     accounts = []
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, ACCOUNTS_FILENAME)
+    if not os.path.isfile(data_file_path):
+        return accounts
     with open(data_file_path, "r", encoding = "utf8") as file:
         lines = file.readlines()
         for line in lines:

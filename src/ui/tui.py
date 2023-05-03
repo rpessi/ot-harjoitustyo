@@ -2,6 +2,7 @@ from services.tk_service import TKService
 import cowsay
 import ui.queries
 import repositories.save_data
+from repositories.save_data import get_account_names
 
 def get_file():
     while True:
@@ -15,7 +16,7 @@ def get_file():
 def check_file(file):
     try:
         with open(file) as file_2:
-            file_2.read() 
+            file_2.read()
     except:
         return False
     if file[-4:] != ".csv":
@@ -31,33 +32,35 @@ def process_file(file, name):
     return account
 
 def run():
-    file_received = False
+    dialog = [" 1 - Lisää tiedosto", " 2 - Tulosta lisätyn tiedoston kassavirtalaskelma", " 3 - Tulosta lisätyn tiedoston tuloslaskelma",
+              " 4 - Etsi tapahtumia nimellä", " 5 - Yhdistä kaikki tilit", " 6 - Lopeta"]
+    available_choices = ["1", "6"]
+    saved = len(get_account_names())
+    if saved > 0:
+        available_choices.append("4")
+    if saved > 1:
+        available_choices.append("5")
     while True: 
         cowsay.cow(" Valitse toiminto! ")
-        print(f" 1 - Lisää tiedosto")
-        print(f" 2 - Tulosta lisätyn tiedoston kassavirtalaskelma")
-        print(f" 3 - Tulosta lisätyn tiedoston tuloslaskelma")
-        print(f" 4 - Etsi tapahtumia nimellä")
-        print(f" 5 - Yhdistä kaikki tilit")
-        print(f" 6 - Lopeta")
+        available_choices.sort()
+        for choice in available_choices:
+            print(dialog[int(choice)-1])
         choice = input(" Valinta (anna numero, hyväksy enterillä): ")
-        if choice in ["1", "2", "3", "4", "5", "6"]:
+        if choice in available_choices:
             if choice == "1":
                 file, name = get_file()
                 account = process_file(file, name)
-                file_received = True
+                if "2" not in available_choices:
+                    available_choices.extend(["2", "3"])
+                saved += 1
+                if "4" not in available_choices:
+                    available_choices.append("4")
+                if saved > 1 and "5" not in available_choices:
+                    available_choices.append("5")
             elif choice == "2":
-                if not file_received:
-                    print("\n Lisää ensin tiedosto!")
-                    print(" Valitettavasti tämä toiminto ei vielä käytä pysyväisesti tallennettuja tietoja.")
-                else:
-                    account.print_cashflow()
+                account.print_cashflow()
             elif choice == "3":
-                if not file_received:
-                    print("\n Lisää ensin tiedosto!")
-                    print(" Valitettavasti tämä toiminto ei vielä käytä pysyväisesti tallennettuja tietoja.")
-                else:
-                    account.print_result()
+                account.print_result()
             elif choice == "4":
                 ui.queries.search_events_by_name()
             elif choice == "5":
