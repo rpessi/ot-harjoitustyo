@@ -28,7 +28,7 @@ def process_file(file, name):
     account = TKService(name)
     account.summary(file)
     ui.queries.choose_offset_account(account)
-    repositories.save_data.save_account(account, file)
+    repositories.save_data.process_account(account, file)
     return account
 
 def run():

@@ -1,12 +1,19 @@
 import unittest
 from services.tk_service import TKService
-from repositories.save_data import save_account
+from repositories.save_data import process_account
 import os
+from config import CSV_FILENAME, ACCOUNTS_FILENAME
 
 class TestTKService(unittest.TestCase):
     def setUp(self):
         dirname = os.path.dirname(__file__)
-        self.data = os.path.join(dirname, "test_file_short.csv")
+        self.data = os.path.join(dirname, "Nordea.csv")
+        if os.path.exists(os.path.join(dirname, ACCOUNTS_FILENAME)):
+            os.remove(os.path.join(dirname, ACCOUNTS_FILENAME))
+        if os.path.exists(os.path.join(dirname, CSV_FILENAME)):
+            os.remove(os.path.join(dirname, CSV_FILENAME))
+        if os.path.exists(os.path.join(dirname, "../tests/TEST.json")):
+            os.remove(os.path.join(dirname, "../tests/TEST.json"))
         self.account = TKService("TEST")
         self.account.interests["NORDEA LAINAT 1"] = -500.0
         self.account.interests["NORDEA LAINAT 2"] = -1500.0
@@ -76,7 +83,6 @@ class TestTKService(unittest.TestCase):
         total_expense = self.account.print_result()[1]
         self.assertEqual(round(total_expense, 2), -18375.21)
 
-    def test_save_account_works(self):
-        result = save_account(self.account, self.data, test = True)
+    def test_process_account_works(self):
+        result = process_account(self.account, self.data)
         self.assertEqual(result, True)
-

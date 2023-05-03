@@ -1,17 +1,15 @@
 import os
 import json
-from config import CSV_FILENAME, ACCOUNTS_FILENAME
+from config import CSV_FILENAME, ACCOUNTS_FILENAME, JSON_PATH
 
-def save_account(account, file):
+def process_account(account, file):
     new_lines = []
     name = account.name
     with open(file, "rt", encoding = "utf_8") as readfile:
         lines = readfile.readlines()
     for line in lines[1:]:  # skipataan otsikkorivi
-        line = line.split(";")
-        date = line[0]
-        event = line[5]
-        amount = line[1].replace(",", ".")
+        line  = line.split(";")
+        date, event, amount = line[0], line[5],line[1].replace(",", ".")
         if line[1][0] == "-":
             offset = account.offset_account_out[event]
             if offset != "Lainat":
@@ -24,19 +22,21 @@ def save_account(account, file):
         else:
             offset = account.offset_account_in[event]
             new_lines.append(";".join((name, date, amount, event, offset)) + "\n")
+    return save_to_csv(new_lines, name)
+
+def save_to_csv(new_lines, name):
     data_file_path = os.path.join(os.path.dirname(__file__), CSV_FILENAME)
     with open(data_file_path, "a", encoding = "utf8") as writefile:
         writefile.writelines(new_lines)
-    save_to_json(new_lines, name)
     print(" Tiedot on tallennettu.")
-    save_account_name(name)
-    return True
+    return save_to_json(new_lines, name)
 
 def save_account_name(name):
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, ACCOUNTS_FILENAME)
     with open(data_file_path, "a", encoding = "utf8") as writefile:
         writefile.write(f"{name}\n")
+    return True
 
 def get_account_names():
     accounts = []
@@ -62,10 +62,11 @@ def save_to_json(data:list, name):
             "Alaluokka": ""})
     json_string = json.dumps(events, indent = 2, ensure_ascii = False)
     dirname = os.path.dirname(__file__)
-    name = name + ".json"
+    name = JSON_PATH + name + ".json"
     data_file_path = os.path.join(dirname, name)
     with open(data_file_path, 'w', encoding = 'UTF-8') as file:
-        file.write(json_string) #tallentaa repon juureen, under construction
+        file.write(json_string)
+    return save_account_name(name)
 
 def read_from_json(name, key, value):
     dirname = os.path.dirname(__file__)
