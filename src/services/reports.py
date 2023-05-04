@@ -2,7 +2,6 @@ import colorama as cr
 from colorama import init, Fore, Back, Style
 from repositories.save_data import create_cash_flow_report, create_result_report, count_changes_in_balance
 
-
 def print_cash_report(name):
     report = create_cash_flow_report(name)
     cash_in, cash_out = report['Cash in'], report['Cash out']
