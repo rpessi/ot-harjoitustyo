@@ -2,6 +2,7 @@ from services.tk_service import TKService
 from repositories.save_data import read_from_json as rfj
 from repositories.save_data import get_account_names
 import cowsay
+from services.reports import print_cash_report
 
 def choose_offset_account(self):
     accounts = [0, "Tulot", "Menot", "Oma tili", "Lainat"]
@@ -43,7 +44,7 @@ def choose_offset_account(self):
 
 def search_events_by_name(): 
     accounts = get_account_names()
-    if accounts == []:
+    if accounts == []: #tämä tilanne estetty toimintavalikon logiikan kautta
         print(" Tallennettuja tilejä ei löydy. Aloita tilitiedoston antamisella.")
         return
     options = list(range(1, len(accounts)+1))
@@ -72,3 +73,20 @@ def search_events_by_name():
         else:
             print(" Valitse annetuista tileistä. Käytä valintaan tilin numeroa.")
             continue
+
+def choose_account_for_report(report_type):
+    accounts = get_account_names()
+    option = list(range(1, len(accounts)+1))
+    while True:
+        cowsay.cow("Voit tulostaa raportin seuraavilta tileiltä:")
+        for i in range(len(accounts)):
+            print(f" {i+1}: {accounts[i]}")
+        choice = input(" Valintasi: ")
+        if choice.isdigit():
+            name = accounts[int(choice)-1]
+            break
+        else:
+            print(" Valitse tili numerolla.")
+    if report_type == "cash":
+        print_cash_report(name)
+

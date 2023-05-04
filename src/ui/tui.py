@@ -2,7 +2,9 @@ from services.tk_service import TKService
 import cowsay
 import ui.queries
 import repositories.save_data
-from repositories.save_data import get_account_names, convert_from_s_pankki
+from repositories.save_data import get_account_names, convert_from_s_pankki, create_cash_flow_report, create_result_report, count_changes_in_balance
+from services.reports import print_cash_report
+import colorama as cr
 
 def get_file():
     while True:
@@ -32,12 +34,13 @@ def process_file(file, name):
     return account
 
 def run():
-    dialog = [" 1 - Lisää tiedosto", " 2 - Tulosta lisätyn tiedoston kassavirtalaskelma", " 3 - Tulosta lisätyn tiedoston tuloslaskelma",
+    print(cr.ansi.clear_screen())
+    dialog = [" 1 - Lisää tiedosto", " 2 - Tulosta kassavirtalaskelma", " 3 - Tulosta lisätyn tiedoston tuloslaskelma",
               " 4 - Etsi tapahtumia nimellä", " 5 - Yhdistä kaikki tilit", " 6 - Lopeta"]
     available_choices = ["1", "6"]
     saved = len(get_account_names())
     if saved > 0:
-        available_choices.append("4")
+        available_choices.extend(["2", "4"])
     if saved > 1:
         available_choices.append("5")
     while True: 
@@ -50,18 +53,19 @@ def run():
             if choice == "1":
                 file, name = get_file()
                 account = process_file(file, name)
-                if "2" not in available_choices:
-                    available_choices.extend(["2", "3"])
+                if "3" not in available_choices:
+                    available_choices.append("3")
                 saved += 1
                 if "4" not in available_choices:
                     available_choices.append("4")
                 if saved > 1 and "5" not in available_choices:
                     available_choices.append("5")
             elif choice == "2":
-                account.print_cashflow()
+                ui.queries.choose_account_for_report("cash")
             elif choice == "3":
                 account.print_result()
             elif choice == "4":
+                print(cr.ansi.clear_screen())
                 ui.queries.search_events_by_name()
             elif choice == "5":
                 accounts = repositories.save_data.get_account_names()
@@ -71,5 +75,5 @@ def run():
                         combined.append(account)
                 repositories.save_data.combine_to_json(combined, "Yhdistetty")
             elif choice == "6":
-                #convert_from_s_pankki("S-Pankki.csv")
+                print_cash_report("Matti")
                 exit()

@@ -129,40 +129,49 @@ def create_cash_flow_report(name):
     dirname = os.path.dirname(__file__)
     filename = JSON_PATH + name + ".json"
     data_file_path = os.path.join(dirname, filename)
-    report = {'Cash in': {'Yhteensä': 0}, 'Cash out': {'Yhteensä': 0}}
+    report = {'Cash in': {}, 'Cash out': {}}
     with open(data_file_path, 'r', encoding = 'UTF-8') as file:
         events = json.loads(file.read())
+        total_cash_in, total_cash_out = 0, 0
+        for event in events[name]:
+            if event['Summa'][0] != "-":
+                if event['Nimi'] not in report['Cash in']:
+                    report['Cash in'][event['Nimi']] = 0
+                report['Cash in'][event['Nimi']] += round(float(event['Summa']), 2)
+                total_cash_in += round(float(event['Summa']), 2)
+        report['Cash in']['Tulot yhteensä'] = total_cash_in
         for event in events[name]:
             if event['Summa'][0] == "-":
                 if event['Nimi'] not in report['Cash out']:
                     report['Cash out'][event['Nimi']] = 0
                 report['Cash out'][event['Nimi']] += round(float(event['Summa']), 2)
-                report['Cash out']['Yhteensä'] += round(float(event['Summa']), 2)
-            else:
-                if event['Nimi'] not in report['Cash out']:
-                    report['Cash in'][event['Nimi']] = 0
-                report['Cash in'][event['Nimi']] += round(float(event['Summa']), 2)
-                report['Cash in']['Yhteensä'] += round(float(event['Summa']), 2)
+                total_cash_out += round(float(event['Summa']), 2)
+        report['Cash out']['Menot yhteensä'] = total_cash_out
     return report
 
 def create_result_report(name):
     dirname = os.path.dirname(__file__)
     filename = JSON_PATH + name + ".json"
     data_file_path = os.path.join(dirname, filename)
-    report = {'Tulot': {'Yhteensä': 0}, 'Menot': {'Yhteensä': 0}}
+    report = {'Tulot': {}, 'Menot': {}}
     with open(data_file_path, 'r', encoding = 'UTF-8') as file:
         events = json.loads(file.read())
+        total_income, total_expense = 0, 0
         for event in events[name]:
             if event['Luokka'] == 'Tulot':
                 if event['Nimi'] not in report['Tulot']:
                     report['Tulot'][event['Nimi']] = 0
                 report['Tulot'][event['Nimi']] += round(float(event['Summa']), 2)
-                report['Tulot']['Yhteensä'] += round(float(event['Summa']), 2)
-            elif event['Luokka'] == 'Menot':
+                total_income += round(float(event['Summa']), 2)
+        report['Tulot']['Tulot yhteensä'] = total_income
+        for event in events[name]:
+            if event['Luokka'] == 'Menot':
                 if event['Nimi'] not in report['Menot']:
                     report['Menot'][event['Nimi']] = 0
                 report['Menot'][event['Nimi']] += round(float(event['Summa']), 2)
-                report['Menot']['Yhteensä'] += round(float(event['Summa']), 2)
+                total_expense += round(float(event['Summa']), 2)
+        report['Menot']['Menot yhteensä'] = total_expense
+    print(report)
     return report
 
 def count_changes_in_balance(name):
