@@ -30,4 +30,3 @@ def printing(lines):
     for line in lines:
         print(Fore.MAGENTA + line + Style.BRIGHT + Style.RESET_ALL)
     print(Fore.GREEN + border + Style.DIM + Style.RESET_ALL)
-
