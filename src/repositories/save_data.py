@@ -101,12 +101,13 @@ def combine_to_json(accounts:list, name):
     if name not in get_account_names():
         save_account_name(name)
     print("\n Tilien tapahtumat on nyt yhdistetty tilille Yhdistetty.")
+    return accounts
 
 def convert_from_s_pankki(file):
     new_lines = ["otsikkorivi \n"]
     with open(file, "rt", encoding = "utf_8") as readfile:
         lines = readfile.readlines()
-        ph = ""
+        p_h = ""
         for line in lines[1:]:  # skipataan otsikkorivi
             #line.replace("\n", "")
             line  = line.split(";")
@@ -117,9 +118,69 @@ def convert_from_s_pankki(file):
                 event = line[5]
             else:
                 event = line[4]
-            new_lines.append(";".join((date, amount, ph, ph, ph, event, ph)) + "\n")
+            new_lines.append(";".join((date, amount, p_h, p_h, p_h, event, p_h)) + "\n")
     data_file_path = os.path.join(os.path.dirname(__file__), CSV_CONVERTED)
     with open(data_file_path, "w", encoding = "utf8") as writefile:
         writefile.writelines(new_lines)
     print(" Muokatut tiedot on tallennettu tiedostoon NC.csv.")
     return "NC.csv"
+
+def create_cash_flow_report(name):
+    dirname = os.path.dirname(__file__)
+    filename = JSON_PATH + name + ".json"
+    data_file_path = os.path.join(dirname, filename)
+    report = {'Cash in': {'Yhteensä': 0}, 'Cash out': {'Yhteensä': 0}}
+    with open(data_file_path, 'r', encoding = 'UTF-8') as file:
+        events = json.loads(file.read())
+        for event in events[name]:
+            if event['Summa'][0] == "-":
+                if event['Nimi'] not in report['Cash out']:
+                    report['Cash out'][event['Nimi']] = 0
+                report['Cash out'][event['Nimi']] += round(float(event['Summa']), 2)
+                report['Cash out']['Yhteensä'] += round(float(event['Summa']), 2)
+            else:
+                if event['Nimi'] not in report['Cash out']:
+                    report['Cash in'][event['Nimi']] = 0
+                report['Cash in'][event['Nimi']] += round(float(event['Summa']), 2)
+                report['Cash in']['Yhteensä'] += round(float(event['Summa']), 2)
+    return report
+
+def create_result_report(name):
+    dirname = os.path.dirname(__file__)
+    filename = JSON_PATH + name + ".json"
+    data_file_path = os.path.join(dirname, filename)
+    report = {'Tulot': {'Yhteensä': 0}, 'Menot': {'Yhteensä': 0}}
+    with open(data_file_path, 'r', encoding = 'UTF-8') as file:
+        events = json.loads(file.read())
+        for event in events[name]:
+            if event['Luokka'] == 'Tulot':
+                if event['Nimi'] not in report['Tulot']:
+                    report['Tulot'][event['Nimi']] = 0
+                report['Tulot'][event['Nimi']] += round(float(event['Summa']), 2)
+                report['Tulot']['Yhteensä'] += round(float(event['Summa']), 2)
+            elif event['Luokka'] == 'Menot':
+                if event['Nimi'] not in report['Menot']:
+                    report['Menot'][event['Nimi']] = 0
+                report['Menot'][event['Nimi']] += round(float(event['Summa']), 2)
+                report['Menot']['Yhteensä'] += round(float(event['Summa']), 2)
+    return report
+
+def count_changes_in_balance(name):
+    dirname = os.path.dirname(__file__)
+    filename = JSON_PATH + name + ".json"
+    data_file_path = os.path.join(dirname, filename)
+    report = {'Oma tili': {'Yhteensä': 0}, 'Lainojen lyhennykset': {'Yhteensä': 0}}
+    with open(data_file_path, 'r', encoding = 'UTF-8') as file:
+        events = json.loads(file.read())
+        for event in events[name]:
+            if event['Luokka'] == 'Lainat':
+                if event['Nimi'] not in report['Lainojen lyhennykset']:
+                    report['Lainojen lyhennykset'][event['Nimi']] = 0
+                report['Lainojen lyhennykset'][event['Nimi']] += -round(float(event['Summa']), 2)
+                report['Lainojen lyhennykset']['Yhteensä'] += -round(float(event['Summa']), 2)
+            elif event['Luokka'] == 'Oma tili':
+                if event['Nimi'] not in report['Oma tili']:
+                    report['Oma tili'][event['Nimi']] = 0
+                report['Oma tili'][event['Nimi']] += -round(float(event['Summa']), 2)
+                report['Oma tili']['Yhteensä'] += -round(float(event['Summa']), 2)
+    return report
