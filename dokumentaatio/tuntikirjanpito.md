@@ -35,4 +35,15 @@
 | 2.5.  | 3,6    | Sovelluskehitys | Tilitapahtumien yhdistäminen ja siihen liittyvät muutokset |
 | 2.5.  | 1,7    | Dokumentaatio   | Käyttöohjeen päivitys ja laajennus |
 | 2.5.  | 0,7    | Dokumentaatio   | Changelog, tuntikirjanpito, vaatimusmäärittely | 
-| Yht.  | 81,05  | |  |
+| 3.5.  | 1,5    | Sovelluskehitys | Käyttöliittymän parantelua |
+| 3.5.  | 1,0    | Sovelluskehitys | Tallennuksen parantelua |
+| 3.5.  | 2,0    | Sovelluskehitys | Testauksen parantelua |
+| 3.5.  | 2,0    | Sovelluskehitys | Lisätty testejä |
+| 3.5.  | 1,3    | Sovelluskehitys | Lisätty muunnosfunktio S-Pankin tiliotteelle |
+| 3.5.  | 0,9    | Sovelluskehitys | Lisätty testi S-Pankin muunnokselle |
+| 3.5.  | 1,0    | Dokumentaatio   | Käyttöohjeen päivitys |
+| 4.5.  | 2,9    | Sovelluskehitys | Lisätty raportteja generoivat funktiot |
+| 4.5.  | 2,4    | Sovelluskehitys | Lisätty tulostusfunktio kassavirtalaskelmalle |
+| 4.5.  | 5,2    | Sovelluskehitys | Tulostuksen opiskelua ja kokeiluja |
+| 5.5   | 2,0    | Sovelluskehitys | Tulostuksen opiskelua ja kokeiluja |
+| Yht.  | 100,05  | |  |
