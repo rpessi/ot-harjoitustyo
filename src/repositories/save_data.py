@@ -65,6 +65,7 @@ def get_account_names():
         lines = file.readlines()
         for line in lines:
             accounts.append(line.replace("\n", ""))
+    print(accounts)
     return accounts
 
 def read_from_json(name, key, value):
@@ -85,9 +86,7 @@ def read_from_json(name, key, value):
     return round(total, 2)
 
 def combine_to_json(accounts:list, name):
-    if accounts == []:
-        print("\n Tallennettuja tilejä ei vielä ole.")
-        return accounts
+    print('combine jo json, saatu lista tileistä', accounts)
     new_lines = []
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, CSV_FILENAME)
@@ -95,11 +94,13 @@ def combine_to_json(accounts:list, name):
         lines = readfile.readlines()
         for line in lines:
             place = line.find(";")
-            if line[:place] in accounts:
+            if line[:place] in accounts and line[:place] != "Yhdistetty":
                 new_lines.append(name + line[place:])
     save_to_json(new_lines, name)
-    if name not in get_account_names():
+    current_accounts = get_account_names()
+    if name not in current_accounts:
         save_account_name(name)
+    print("get_account_names() tilit", current_accounts)
     print("\n Tilien tapahtumat on nyt yhdistetty tilille Yhdistetty.")
     return accounts
 

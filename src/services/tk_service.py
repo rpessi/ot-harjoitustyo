@@ -1,3 +1,4 @@
+from rich import inspect
 class TKService:
 
     def __init__(self, name):

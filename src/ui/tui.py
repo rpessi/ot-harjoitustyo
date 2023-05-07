@@ -3,8 +3,11 @@ import cowsay
 import ui.queries
 import repositories.save_data
 from repositories.save_data import get_account_names, convert_from_s_pankki, create_cash_flow_report, create_result_report, count_changes_in_balance
-from services.reports import print_cash_report
+from ui.reports import print_cash_report
 import colorama as cr
+from rich.console import Console
+from rich.prompt import Prompt
+from rich.padding import Padding
 
 def get_file():
     while True:
@@ -34,7 +37,7 @@ def process_file(file, name):
     return account
 
 def run():
-    print(cr.ansi.clear_screen())
+    console = Console()
     dialog = [" 1 - Lisää tiedosto", " 2 - Tulosta kassavirtalaskelma", " 3 - Tulosta lisätyn tiedoston tuloslaskelma",
               " 4 - Etsi tapahtumia nimellä", " 5 - Yhdistä kaikki tilit", " 6 - Lopeta"]
     available_choices = ["1", "6"]
@@ -47,33 +50,32 @@ def run():
         cowsay.cow(" Valitse toiminto! ")
         available_choices.sort()
         for choice in available_choices:
-            print(dialog[int(choice)-1])
-        choice = input(" Valinta (anna numero, hyväksy enterillä): ")
-        if choice in available_choices:
-            if choice == "1":
-                file, name = get_file()
-                account = process_file(file, name)
-                if "3" not in available_choices:
-                    available_choices.append("3")
-                saved += 1
-                if "4" not in available_choices:
-                    available_choices.append("4")
-                if saved > 1 and "5" not in available_choices:
-                    available_choices.append("5")
-            elif choice == "2":
-                ui.queries.choose_account_for_report("cash")
-            elif choice == "3":
-                account.print_result()
-            elif choice == "4":
-                print(cr.ansi.clear_screen())
-                ui.queries.search_events_by_name()
-            elif choice == "5":
-                accounts = repositories.save_data.get_account_names()
-                combined = []
-                for account in accounts:
-                    if account != "Yhdistetty":
-                        combined.append(account)
-                repositories.save_data.combine_to_json(combined, "Yhdistetty")
-            elif choice == "6":
-                print_cash_report("Matti")
-                exit()
+            console.print(dialog[int(choice)-1])
+        choice = Prompt.ask(" Valitse toiminto ", choices = available_choices)
+        if choice == "1":
+            file, name = get_file()
+            account = process_file(file, name)
+            if "3" not in available_choices:
+                available_choices.append("3")
+            saved += 1
+            if "4" not in available_choices:
+                available_choices.append("4")
+            if saved > 1 and "5" not in available_choices:
+                available_choices.append("5")
+        elif choice == "2":
+            ui.queries.choose_account_for_report("cash")
+        elif choice == "3":
+            account.print_result()
+        elif choice == "4":
+            ui.queries.search_events_by_name()
+        elif choice == "5":
+            accounts = repositories.save_data.get_account_names()
+            combined = []
+            for account in accounts:
+                print(account)
+                if account != "Yhdistetty":
+                    combined.append(account)
+                    print("lisättiin funktiokutsuun", account)
+            repositories.save_data.combine_to_json(combined, "Yhdistetty")
+        elif choice == "6":
+            exit()
