@@ -46,7 +46,8 @@ def save_to_json(data:list, name):
     data_file_path = os.path.join(dirname, filename)
     with open(data_file_path, 'w', encoding = 'UTF-8') as file:
         file.write(json_string)
-    return save_account_name(name)
+    if name != 'Yhdistetty':
+        return save_account_name(name)
 
 def save_account_name(name):
     dirname = os.path.dirname(__file__)
@@ -86,7 +87,7 @@ def read_from_json(name, key, value):
     return round(total, 2)
 
 def combine_to_json(accounts:list, name):
-    print('combine jo json, saatu lista tileistä', accounts)
+    #print('combine jo json, saatu lista tileistä', accounts) #tässä kohtaa tilit oikein
     new_lines = []
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, CSV_FILENAME)
@@ -100,9 +101,9 @@ def combine_to_json(accounts:list, name):
     current_accounts = get_account_names()
     if name not in current_accounts:
         save_account_name(name)
-    print("get_account_names() tilit", current_accounts)
+    #print("get_account_names() tilit", current_accounts)
     print("\n Tilien tapahtumat on nyt yhdistetty tilille Yhdistetty.")
-    return accounts
+    return accounts 
 
 def convert_from_s_pankki(file):
     new_lines = ["otsikkorivi \n"]

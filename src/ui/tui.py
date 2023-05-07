@@ -72,10 +72,10 @@ def run():
             accounts = repositories.save_data.get_account_names()
             combined = []
             for account in accounts:
-                print(account)
+                #print(account) #tässä kohtaa tilit oikein
                 if account != "Yhdistetty":
                     combined.append(account)
-                    print("lisättiin funktiokutsuun", account)
+                    #print("lisättiin funktiokutsuun", account) #tässä kohtaa tilit oikein
             repositories.save_data.combine_to_json(combined, "Yhdistetty")
         elif choice == "6":
             exit()
