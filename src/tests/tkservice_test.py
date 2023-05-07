@@ -1,7 +1,8 @@
 import unittest
 from services.tk_service import TKService
 from repositories.save_data import process_account, get_account_names, read_from_json, combine_to_json
-from repositories.save_data import combine_to_json, convert_from_s_pankki
+from repositories.save_data import combine_to_json, convert_from_s_pankki, create_cash_flow_report
+from repositories.save_data import create_result_report, count_changes_in_balance
 import os
 from config import CSV_FILENAME, ACCOUNTS_FILENAME
 
@@ -129,3 +130,39 @@ class TestTKService(unittest.TestCase):
         datapath = os.path.join(dirname, newdata)
         result = os.path.isfile(datapath)
         self.assertEqual(result, True)
+
+    def test_create_cash_flow_report_works_correctly_with_one_account(self):
+        process_account(self.account, self.data)
+        report = create_cash_flow_report(self.account.name)
+        tot_income = report['Cash in']['Tulot yhteensä']
+        tot_exp = report['Cash out']['Menot yhteensä']
+        self.assertEqual(round(tot_income, 2), 40808.04)
+        self.assertEqual(round(tot_exp, 2), -38072.33)
+
+    def test_create_cash_flow_report_works_correctly_with_two_accounts(self):
+        process_account(self.account, self.data)
+        process_account(self.account2, self.data2)
+        combine_to_json(["TEST", "TEST2"], "UNITED")
+        report = create_cash_flow_report("UNITED")
+        tot_income = report['Cash in']['Tulot yhteensä']
+        tot_exp = report['Cash out']['Menot yhteensä']
+        self.assertEqual(round(tot_income, 2), 71410.03)
+        self.assertEqual(round(tot_exp, 2), -38532.22)
+
+    def test_create_result_report_works_correctly_with_one_account(self):
+        process_account(self.account, self.data)
+        report = create_result_report(self.account.name)
+        tot_income = report['Tulot']['Tulot yhteensä']
+        tot_exp = report['Menot']['Menot yhteensä']
+        self.assertEqual(round(tot_income, 2), 37383.03)
+        self.assertEqual(round(tot_exp, 2), -18375.19)
+
+    def test_create_result_report_works_correctly_with_two_accounts(self):
+        process_account(self.account, self.data)
+        process_account(self.account2, self.data2)
+        combine_to_json(["TEST", "TEST2"], "UNITED")
+        report = create_result_report("UNITED")
+        tot_income = report['Tulot']['Tulot yhteensä']
+        tot_exp = report['Menot']['Menot yhteensä']
+        self.assertEqual(round(tot_income, 2), 67985.02)
+        self.assertEqual(round(tot_exp, 2), -18835.08)
