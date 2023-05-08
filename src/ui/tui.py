@@ -18,7 +18,7 @@ def get_file(file_type: str):
         Tuple, jossa on tiedoston nimi ja polku yhdistettynä, sekä käyttäjän tilille antama nimi
     """
     while True:
-        file = input( " Anna csv-tiedoston nimi ja polku, esim. src/short.csv: ")
+        file = input( " Anna csv-tiedoston nimi ja polku: ")
         if check_file(file):
             name = input(" Anna tilin nimi: ")
             if file_type == "Nordea":
@@ -69,6 +69,7 @@ def run():
               " 4 - Etsi tapahtumia nimellä", " 5 - Yhdistä kaikki tilit", " 6 - Lopeta"]
     available_choices = ["1", "2", "6"]
     saved = len(get_account_names())
+    console.print("\n Voit kokeilla ohjelmaa päähakemiston tiedostoilla Nordea.csv ja S-Pankki.csv")
     if saved > 0:
         available_choices.extend(["3", "4"])
     if saved > 1:
