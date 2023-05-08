@@ -14,7 +14,7 @@
 | 12.4. | 6,5    | Sovelluskehitys | Käyttöliittymä / kyselyt |
 | 14.4. | 1,75   | Sovelluskehitys | Käyttöliittymä / kyselyt |
 | 17.4. | 3,25   | Sovelluskehitys | Käyttöliittymä / kyselyt |
-| 18.4. | 2,75   | Sovelluskehitys | Service / tallennus |
+| 18.4. | 2,8    | Sovelluskehitys | Service / tallennus |
 | 18.4. | 1,0    | Dokumentaatio   | Dokumentaation päivitys ja laajennus |
 | 19.4. | 1,5    | Sovelluskehitys | Käyttöliittymä / kyselyt |
 | 19.4. | 1,5    | Sovelluskehitys | Service / testit |
@@ -46,4 +46,8 @@
 | 4.5.  | 2,4    | Sovelluskehitys | Lisätty tulostusfunktio kassavirtalaskelmalle |
 | 4.5.  | 5,2    | Sovelluskehitys | Tulostuksen opiskelua ja kokeiluja |
 | 5.5   | 2,0    | Sovelluskehitys | Tulostuksen opiskelua ja kokeiluja |
-| Yht.  | 100,05  | |  |
+| 7.5.  | 2,5    | Sovelluskehitys | Testit raporttifunktioille |
+| 7.5.  | 2,4    | Dokumentaatio   | Docstringiä koodin sekaan |
+| 8.5.  | 7,3    | Sovelluskehitys | Tulostuksen ja käyttöliittymän työstöä |
+| 8.5.  | 0,5    | Sovelluskehitys | Testi tasefunktiolle |
+| Yht.  | 113,6  | |  |

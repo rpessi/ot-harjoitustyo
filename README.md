@@ -4,7 +4,11 @@ Ohjelman tarkoitus on koota yhteenveto käyttäjän antamasta tiliotteesta. Ohje
 eri tililtä. Ohjelma on tarkoitettu yhdelle käyttäjälle, mutta toki siihen voi tallentaa kahdenkin ihmisen tilitiedot, jos halutaan
 saada kokonaiskuva perheen taloudesta.
 
-[Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/viikko5)
+Ohjelmaa voi kokeilla päähakemiston tiedostoilla Nordea.csv ja S-Pankki.csv.
+
+Disclaimer: Käyttöohjetta ei ole päivitetty täysin edellisen releasen jäljiltä vastaamaan kaikkia toimintoja, mutta se kannattaa silti lukea.
+
+[Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/viikko7)
 
 ## Python-versio
 
