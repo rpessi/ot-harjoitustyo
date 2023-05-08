@@ -54,46 +54,6 @@ class TestTKService(unittest.TestCase):
         self.assertEqual(round(self.account.money_in[key1], 2), 3150.00)
         self.assertEqual(round(self.account.money_in[key2], 2), 37383.03)
 
-    def test_print_cashflow_counts_misc_exp_correctly_with_default_value(self):
-        self.account.summary(self.data)
-        misc1 = self.account.print_cashflow()[2]
-        self.assertEqual(round(misc1, 2), 0)
-
-    def test_print_cashflow_counts_misc_exp_correctly_with_set_value(self):
-        self.account.summary(self.data)
-        misc2 = self.account.print_cashflow(min_exp=2000)[2]
-        self.assertEqual(round(misc2, 2), -2449.70)
-
-    def test_print_cashflow_counts_total_money_in_correctly(self):
-        self.account.summary(self.data)
-        total_money_in = self.account.print_cashflow()[0]
-        self.assertEqual(round(total_money_in, 2), 40808.04)
-
-    def test_print_cashflow_counts_total_money_out_correctly(self):
-        self.account.summary(self.data)
-        total_money_out = self.account.print_cashflow()[1]
-        self.assertEqual(round(total_money_out, 2), -38072.33)
-   
-    def test_print_result_counts_misc_exp_correctly_with_default_value(self):
-        self.account.summary(self.data)
-        misc1 = self.account.print_result()[2]
-        self.assertEqual(round(misc1, 2), 0)
-
-    def test_print_cashflow_counts_misc_exp_correctly_with_set_value(self):
-        self.account.summary(self.data)
-        misc2 = self.account.print_result(min_exp=2000)[2]
-        self.assertEqual(round(misc2, 2), -4449.70)
-
-    def test_print_result_counts_total_income_correctly(self):
-        self.account.summary(self.data)
-        total_income = self.account.print_result()[0]
-        self.assertEqual(round(total_income, 2), 37383.03)
-
-    def test_print_result_counts_total_expense_correctly(self):
-        self.account.summary(self.data)
-        total_expense = self.account.print_result()[1]
-        self.assertEqual(round(total_expense, 2), -18375.21)
-
     def test_process_account_works(self):
         result = process_account(self.account, self.data)
         self.assertEqual(result, True)
@@ -166,3 +126,10 @@ class TestTKService(unittest.TestCase):
         tot_exp = report['Menot']['Menot yhteensä']
         self.assertEqual(round(tot_income, 2), 67985.02)
         self.assertEqual(round(tot_exp, 2), -18835.08)
+
+    def test_count_changes_in_balance_works_with_one_account(self):
+        process_account(self.account, self.data)
+        report = count_changes_in_balance(self.account.name)
+        total_accounts, total_loans = report['Oma tili']['Yhteensä'], report['Lainojen lyhennykset']['Yhteensä']
+        self.assertEqual(round(total_accounts, 2), -275.01)
+        self.assertEqual(round(total_loans, 2), 16547.14)
