@@ -1,13 +1,23 @@
+"""Tiedon pysyväistallennuksesta ja siihen liittyvistä funktioista vastaava osio"""
 import os
 import json
 from config import CSV_FILENAME, ACCOUNTS_FILENAME, JSON_PATH, CSV_CONVERTED
 
-def process_account(account, file):
+def process_account(account, file:str):
+    """Toiminto käyttäjän antaman tiedoston käsittelyyn ja muokkaamiseen tallennusta varten
+
+        Args:
+            account: TKService()-instanssi
+            file: käsiteltävän tiedoston polku ja nimi
+
+        Returns:
+            Palauttaa komentoketjun kautta True, kun tiedot on talletettu csv- ja json-muotoisina
+            ja kun tilin nimi on talletettu tilien nimiä tallentavaan csv-tiedoston"""
     new_lines = []
     name = account.name
     with open(file, "rt", encoding = "utf_8") as readfile:
         lines = readfile.readlines()
-    for line in lines[1:]:  # skipataan otsikkorivi
+    for line in lines[1:]:
         line  = line.split(";")
         date, event, amount = line[0], line[5],line[1].replace(",", ".")
         if line[1][0] == "-":
@@ -24,7 +34,16 @@ def process_account(account, file):
             new_lines.append(";".join((name, date, amount, event, offset)) + "\n")
     return save_to_csv(new_lines, name)
 
-def save_to_csv(new_lines, name):
+def save_to_csv(new_lines:list, name:str):
+    """Toiminto, joka tallentaa process_account() -funktion prosessoimat tiedot csv-tiedostoon
+
+        Args:
+            new_lines: Prosessoidut tiedot, jotka halutaan tallentaa
+            name: Käyttäjän tilille antama nimi, joka välitetään eteenpäin seuraavalle funktiolle
+
+        Returns:
+            palauttaa komentoketjun kautta True, kun tallennusfunktiot on käyty läpi"""
+
     data_file_path = os.path.join(os.path.dirname(__file__), CSV_FILENAME)
     with open(data_file_path, "a", encoding = "utf8") as writefile:
         writefile.writelines(new_lines)
@@ -32,6 +51,15 @@ def save_to_csv(new_lines, name):
     return save_to_json(new_lines, name)
 
 def save_to_json(data:list, name):
+    """Tilitietojen json-muotoisesta tallennuksesta vastaava toiminto
+
+    Args:
+        data: Lista tallennettavista riveistä
+        name: Käyttäjän tilille antama nimi
+
+    Returns:
+        Palauttaa komentoketjun kautta True, kun tallennusfunktiot on käyty läpi
+        """
     events = {}
     for rivi in data:
         osat = rivi.split(";")
@@ -48,8 +76,17 @@ def save_to_json(data:list, name):
         file.write(json_string)
     if name != 'Yhdistetty':
         return save_account_name(name)
+    return True
 
-def save_account_name(name):
+def save_account_name(name:str):
+    """Toiminto, joka tallentaa käyttäjän antaman tilin nimen
+
+        Args:
+            name: Tilin nimi, joka tallennetaan pysyvästi
+
+        Returns:
+            True
+    """
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, ACCOUNTS_FILENAME)
     with open(data_file_path, "a", encoding = "utf8") as writefile:
@@ -57,6 +94,12 @@ def save_account_name(name):
     return True
 
 def get_account_names():
+    """Toiminto, joka lukee tiedostosta sinne tallennettujen tilien nimet
+
+        Returns:
+            Palauttaa tallennettujen tilien nimet listana tai tyhjän listan, jos tallennettuja
+            tietoja ei ole
+    """
     accounts = []
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, ACCOUNTS_FILENAME)
@@ -66,10 +109,19 @@ def get_account_names():
         lines = file.readlines()
         for line in lines:
             accounts.append(line.replace("\n", ""))
-    print(accounts)
     return accounts
 
-def read_from_json(name, key, value):
+def read_from_json(name:str, key:str, value:str):
+    """Toiminto json-tallennettujen tietojen lukemiseen ja hakujen tekemiseen
+
+        Args: 
+            name: Tilin nimi, jolta tapahtumia haetaan
+            key: Hakuavain, esimerkiksi 'Nimi' tai 'Vuosi'; sanakirjan avain, jolla haetaan
+            value: Hakuehto, jolla haetaan
+
+        Returns:
+            Palauttaa löydettyjen tapahtumien yhteissumman
+        """""
     dirname = os.path.dirname(__file__)
     filename = JSON_PATH + name + ".json"
     data_file_path = os.path.join(dirname, filename)
@@ -86,8 +138,19 @@ def read_from_json(name, key, value):
         print(f" Tililtä {name} ei löydy tapahtumia haulla '{value}'.")
     return round(total, 2)
 
-def combine_to_json(accounts:list, name):
-    #print('combine jo json, saatu lista tileistä', accounts) #tässä kohtaa tilit oikein
+def combine_to_json(accounts:list, name:str):
+    """Toiminto, jolla yhdistetään useamman tilin tiedot samaan tiedostoon. 
+
+        Args:
+            accounts = lista tilien nimistä
+            name: nimi, jolla yhdistettävät tilit tallennetaan
+
+        Returns:
+            accounts: Palauttaa parametrina annetun listan, jos tallennus onnistui. Tyhjä lista
+            palautetaan, jos tallennettavia tilejä ei ole
+            """
+    if not get_account_names():
+        return accounts
     new_lines = []
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, CSV_FILENAME)
@@ -101,11 +164,18 @@ def combine_to_json(accounts:list, name):
     current_accounts = get_account_names()
     if name not in current_accounts:
         save_account_name(name)
-    #print("get_account_names() tilit", current_accounts)
-    print("\n Tilien tapahtumat on nyt yhdistetty tilille Yhdistetty.")
-    return accounts 
+    return accounts
 
-def convert_from_s_pankki(file):
+def convert_from_s_pankki(file:str):
+    """Toiminto, joka muokkaa S-Pankin tiliotteen ohjelmalle sopivaan muotoon ja
+        tallentaa sen reposition juureen
+
+        Args:
+            file: Tiedoston polku ja nimi, jonka käyttäjä antaa muokattavaksi
+
+        Returns:
+            "NC.csv": Palauttaa nimen, jolla tiedosto on tallennettu
+    """
     new_lines = ["otsikkorivi \n"]
     with open(file, "rt", encoding = "utf_8") as readfile:
         lines = readfile.readlines()
@@ -115,7 +185,6 @@ def convert_from_s_pankki(file):
             line  = line.split(";")
             date = line[0][-4:]+line[0][2:5]
             amount = line[2].replace(",", ".").replace("+", "")
-            print(amount)
             if amount[0] == '-':
                 event = line[5]
             else:
@@ -124,7 +193,6 @@ def convert_from_s_pankki(file):
     data_file_path = os.path.join(os.path.dirname(__file__), CSV_CONVERTED)
     with open(data_file_path, "w", encoding = "utf8") as writefile:
         writefile.writelines(new_lines)
-    print(" Muokatut tiedot on tallennettu tiedostoon NC.csv.")
     return "NC.csv"
 
 def create_cash_flow_report(name):
@@ -165,15 +233,14 @@ def create_result_report(name):
                     report['Tulot'][event['Nimi']] = 0
                 report['Tulot'][event['Nimi']] += round(float(event['Summa']), 2)
                 total_income += round(float(event['Summa']), 2)
-        report['Tulot']['Tulot yhteensä'] = total_income
+        report['Tulot']['Tulot yhteensä'] = round(total_income, 2)
         for event in events[name]:
             if event['Luokka'] == 'Menot':
                 if event['Nimi'] not in report['Menot']:
                     report['Menot'][event['Nimi']] = 0
                 report['Menot'][event['Nimi']] += round(float(event['Summa']), 2)
                 total_expense += round(float(event['Summa']), 2)
-        report['Menot']['Menot yhteensä'] = total_expense
-    print(report)
+        report['Menot']['Menot yhteensä'] = round(total_expense, 2)
     return report
 
 def count_changes_in_balance(name):
