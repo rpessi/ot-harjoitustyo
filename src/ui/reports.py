@@ -19,12 +19,23 @@ def print_account_report(name:str, report_type:int):
     inc_lines, exp_lines = [], []
     for key, value in income.items():
         inc_lines.append((round(value, 2), key))
-    for key, value in expense.items():
-        exp_lines.append((round(-value, 2), key))
-    inc_lines.sort()
-    last = inc_lines.pop()
-    inc_lines.reverse()
-    inc_lines.append(last)
+    if report_type == 3:
+        for key, value in expense.items():
+            exp_lines.append((round(value, 2), key))
+    else:
+        for key, value in expense.items():
+            exp_lines.append((round(-value, 2), key))
+    if report_type == 3:
+        inc_lines.sort()
+        inc_lines.reverse()
+        last = inc_lines.pop()
+        #inc_lines.reverse()
+        inc_lines.append(last)
+    else:
+        inc_lines.sort()
+        last = inc_lines.pop()
+        inc_lines.reverse()
+        inc_lines.append(last)
     exp_lines.sort()
     last = exp_lines.pop()
     exp_lines.reverse()
@@ -35,7 +46,7 @@ def print_account_report(name:str, report_type:int):
         print_balance(name, inc_lines, exp_lines)
 
 def print_balance(name: str, inc_lines: list, exp_lines: list):
-    table = Table(title=f"Muutokset tase-erissä tilillä {name}", title_style = 'bold dark_violet')
+    table = Table(title=f"Muutokset tase-erissä tilillä {name}", title_style = 'bold dark_violet', safe_box=True)
     table.add_section()
     table.add_column("Varat/Velat", justify="left", style="bold dark_violet", no_wrap=True)
     table.add_column("Tapahtumat", style="deep_sky_blue4")
@@ -55,7 +66,7 @@ def print_balance(name: str, inc_lines: list, exp_lines: list):
 
 def print_cash_or_result(name:str, inc_lines:list, exp_lines:list, report_type:int):
     titles = ["", "Tuloslaskelma", "Kassavirtalaskelma"]
-    table = Table(title=f"{titles[report_type]} tililtä {name}", title_style = 'bold dark_violet')
+    table = Table(title=f"{titles[report_type]} tililtä {name}", title_style = 'bold dark_violet', safe_box=True)
     table.add_column("Tulot/Menot", justify="left", style="bold dark_violet", no_wrap=True)
     table.add_column("Tapahtumat", style="deep_sky_blue4")
     table.add_column("Summa", justify="right", style="deep_sky_blue4")
