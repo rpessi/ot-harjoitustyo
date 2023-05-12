@@ -47,16 +47,16 @@ sequenceDiagram
    participant Repositories
    UI->>User: "Valitse toiminto: "
    User->>UI: "1"
-   UI-->UI: get_file("Nordea")
+   UI-->>UI: get_file("Nordea")
    UI->>User: "Anna tiedosto: "
    User->>UI: "Nordea.csv"
    UI->>UI: check_file("Nordea.csv", "Nordea")
    UI->>Repositories: check_file_format("Nordea.csv", "Nordea")
-   Repositories-->UI: True
-   UI-->UI: "True"
+   Repositories-->>UI: True
+   UI-->>UI: "True"
    UI->>User: "Anna tilille nimi: "
    User->>UI: "Pekka Python"
-   UI-->UI: ("Nordea.csv", "Pekka Python")
+   UI-->>UI: ("Nordea.csv", "Pekka Python")
    UI->>UI: process_file("Nordea.csv", "Pekka Python")
    UI->>Service: account = TKService("Nordea.csv", "Pekka Python")
    UI->>Service: account.summary(account.path)
@@ -64,8 +64,8 @@ sequenceDiagram
    UI->>User: kyselee
    User->>UI: vastailee
    UI->>Repositories: repositories.save_data.save_account(account)
-   Repositories-->UI: "True"
-   UI-->UI: "account"
+   Repositories-->>UI: "True"
+   UI-->>UI: "account"
    UI->>User: "Valitse toiminto: "
    User->>UI: "6"
    UI->>UI: exit()
@@ -81,18 +81,18 @@ sequenceDiagram
    participant Service
    participant Repositories
    UI.tui->>User: "Valitse toiminto: "
-   User-->UI.tui: "4"
+   User-->>UI.tui: "4"
    UI.tui->>UI.queries: search_events_by_name()
    UI.queries->>Repositories: get_account_names()
-   Repositories-->UI.queries: accounts
+   Repositories-->>UI.queries: accounts
    UI.queries->>User: "Valitse tili, jolta haluat etsiä tapahtumia. Valintasi (Matti/Maija): "
-   User-->UI.queries: "Maija"
+   User-->>UI.queries: "Maija"
    UI.queries->>User: "Valittu tili: Maija. Anna tapahtuman nimi: "
-   User-->UI.queries: "eli"
-   UI.queries-->User: "3/2022 Elisa 29.50 \n 4/2022 Elisa 32.50 \n Yhteensä 62.00"
+   User-->>UI.queries: "eli"
+   UI.queries-->>User: "3/2022 Elisa 29.50 \n 4/2022 Elisa 32.50 \n Yhteensä 62.00"
    UI.queries->>User: "Valitse: Uusi haku samalta tililtä (1) tai Takaisin päävalikkoon (2): "
-   User-->UI.queries: "2"
-   UI.queries-->UI.tui: return
+   User-->>UI.queries: "2"
+   UI.queries-->>UI.tui: return
    UI.tui->>User: "Valitse toiminto: "
    User->>UI.tui: "6"
    UI.tui->>UI.tui: exit()
