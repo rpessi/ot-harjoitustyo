@@ -6,14 +6,12 @@ import ui.queries
 from ui.reports import print_success
 import repositories.save_data
 from repositories.save_data import get_account_names, convert_from_s_pankki
-import colorama as cr
 from rich.console import Console
 from rich.prompt import Prompt
-from rich.padding import Padding
 
 def get_file(file_type: str):
     """Pyytää käyttäjältä tallennettavan tiedoston ja pyytää käyttäjää antamaan tilille nimen
-    
+
     Returns:
         Tuple, jossa on tiedoston nimi ja polku yhdistettynä, sekä käyttäjän tilille antama nimi
     """
@@ -33,7 +31,7 @@ def get_file(file_type: str):
 
 def check_file(file:str):
     """Tarkistaa, että käyttäjän antama tiedosto on olemassa ja .csv-päätteinen
-    
+
     Returns:
         True, jos tiedosto löytyy ja sillä on .csv -pääte, muussa tapauksessa False"""
     try:
@@ -69,7 +67,7 @@ def run():
               " 4 - Etsi tapahtumia nimellä", " 5 - Yhdistä kaikki tilit", " 6 - Lopeta"]
     available_choices = ["1", "2", "6"]
     saved = len(get_account_names())
-    console.print("\n Voit kokeilla ohjelmaa päähakemiston tiedostoilla Nordea.csv ja S-Pankki.csv")
+    console.print("\n Voit kokeilla ohjelmaa lataushakemiston tiedostoilla Nordea.csv ja S-Pankki.csv")
     if saved > 0:
         available_choices.extend(["3", "4"])
     if saved > 1:

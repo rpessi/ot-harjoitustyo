@@ -59,7 +59,7 @@ tomli = {version = "*", markers = "python_version < \"3.11\""}
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 files = [
@@ -609,4 +609,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "109d76248f2da46018c6c17e4d077157c9ccd1ad0a2ea5859489ce1401dc45be"
+content-hash = "02ff9523d13fd1b3121ea4699d1c4a9eae7236043540d9ef54a20e3d7b1b9ebc"

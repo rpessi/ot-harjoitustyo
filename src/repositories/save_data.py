@@ -15,7 +15,7 @@ def process_account(account, file:str):
             ja kun tilin nimi on talletettu tilien nimiä tallentavaan csv-tiedoston"""
     new_lines = []
     name = account.name
-    with open(file, "rt", encoding = "utf_8") as readfile:
+    with open(file, "rt", encoding = "utf-8") as readfile:
         lines = readfile.readlines()
     for line in lines[1:]:
         line  = line.split(";")
@@ -45,9 +45,8 @@ def save_to_csv(new_lines:list, name:str):
             palauttaa komentoketjun kautta True, kun tallennusfunktiot on käyty läpi"""
 
     data_file_path = os.path.join(os.path.dirname(__file__), CSV_FILENAME)
-    with open(data_file_path, "a", encoding = "utf8") as writefile:
+    with open(data_file_path, "a", encoding = "utf-8") as writefile:
         writefile.writelines(new_lines)
-    print(" Tiedot on tallennettu.")
     return save_to_json(new_lines, name)
 
 def save_to_json(data:list, name):
@@ -72,7 +71,7 @@ def save_to_json(data:list, name):
     dirname = os.path.dirname(__file__)
     filename = JSON_PATH + name + ".json"
     data_file_path = os.path.join(dirname, filename)
-    with open(data_file_path, 'w', encoding = 'UTF-8') as file:
+    with open(data_file_path, 'w', encoding = 'utf-8') as file:
         file.write(json_string)
     if name != 'Yhdistetty':
         return save_account_name(name)
@@ -89,7 +88,7 @@ def save_account_name(name:str):
     """
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, ACCOUNTS_FILENAME)
-    with open(data_file_path, "a", encoding = "utf8") as writefile:
+    with open(data_file_path, "a", encoding = "utf-8") as writefile:
         writefile.write(f"{name}\n")
     return True
 
@@ -105,7 +104,7 @@ def get_account_names():
     data_file_path = os.path.join(dirname, ACCOUNTS_FILENAME)
     if not os.path.isfile(data_file_path):
         return accounts
-    with open(data_file_path, "r", encoding = "utf8") as file:
+    with open(data_file_path, "r", encoding = "utf-8") as file:
         lines = file.readlines()
         for line in lines:
             accounts.append(line.replace("\n", ""))
@@ -125,7 +124,7 @@ def read_from_json(name:str, key:str, value:str):
     dirname = os.path.dirname(__file__)
     filename = JSON_PATH + name + ".json"
     data_file_path = os.path.join(dirname, filename)
-    with open(data_file_path, 'r', encoding = 'UTF-8') as file:
+    with open(data_file_path, 'r', encoding = 'utf-8') as file:
         events = json.loads(file.read())
         total = 0
     for event in events[name]:
@@ -154,7 +153,7 @@ def combine_to_json(accounts:list, name:str):
     new_lines = []
     dirname = os.path.dirname(__file__)
     data_file_path = os.path.join(dirname, CSV_FILENAME)
-    with open(data_file_path, "rt", encoding = "utf_8") as readfile:
+    with open(data_file_path, "rt", encoding = "utf-8") as readfile:
         lines = readfile.readlines()
         for line in lines:
             place = line.find(";")
@@ -191,16 +190,24 @@ def convert_from_s_pankki(file:str):
                 event = line[4]
             new_lines.append(";".join((date, amount, p_h, p_h, p_h, event, p_h)) + "\n")
     data_file_path = os.path.join(os.path.dirname(__file__), CSV_CONVERTED)
-    with open(data_file_path, "w", encoding = "utf8") as writefile:
+    with open(data_file_path, "w", encoding = "utf-8") as writefile:
         writefile.writelines(new_lines)
     return "NC.csv"
 
-def create_cash_flow_report(name):
+def create_cash_flow_report(name:str):
+    """Toiminto, joka luo kassavirtaraportin tilitietojen JSON-tallennetusta muodosta
+
+        Args:
+            name: Tilin nimi
+
+        Returns:
+            report: Sanakirja, johon on koottu kassavirtalaskelman tiedot
+    """
     dirname = os.path.dirname(__file__)
     filename = JSON_PATH + name + ".json"
     data_file_path = os.path.join(dirname, filename)
     report = {'Cash in': {}, 'Cash out': {}}
-    with open(data_file_path, 'r', encoding = 'UTF-8') as file:
+    with open(data_file_path, 'r', encoding = 'utf-8') as file:
         events = json.loads(file.read())
         total_cash_in, total_cash_out = 0, 0
         for event in events[name]:
@@ -219,12 +226,20 @@ def create_cash_flow_report(name):
         report['Cash out']['Menot yhteensä'] = total_cash_out
     return report
 
-def create_result_report(name):
+def create_result_report(name:str):
+    """Toiminto, joka luo tuloslaskelman tilitietojen JSON-tallennetusta muodosta
+
+        Args:
+            name: Tilin nimi
+
+        Returns:
+            report: Sanakirja, johon on koottu tuloslaskelman tiedot
+    """
     dirname = os.path.dirname(__file__)
     filename = JSON_PATH + name + ".json"
     data_file_path = os.path.join(dirname, filename)
     report = {'Tulot': {}, 'Menot': {}}
-    with open(data_file_path, 'r', encoding = 'UTF-8') as file:
+    with open(data_file_path, 'r', encoding = 'utf-8') as file:
         events = json.loads(file.read())
         total_income, total_expense = 0, 0
         for event in events[name]:
@@ -243,12 +258,20 @@ def create_result_report(name):
         report['Menot']['Menot yhteensä'] = round(total_expense, 2)
     return report
 
-def count_changes_in_balance(name):
+def count_changes_in_balance(name:str):
+    """Toiminto, joka laskee tase-erien muutokset tilitietojen JSON-tallennetusta muodosta
+
+        Args:
+            name: Tilin nimi
+
+        Returns:
+            report: Sanakirja, johon on koottu tiedot tase-erien muutoksista
+    """
     dirname = os.path.dirname(__file__)
     filename = JSON_PATH + name + ".json"
     data_file_path = os.path.join(dirname, filename)
     report = {'Oma tili': {'Yhteensä': 0}, 'Lainojen lyhennykset': {'Yhteensä': 0}}
-    with open(data_file_path, 'r', encoding = 'UTF-8') as file:
+    with open(data_file_path, 'r', encoding = 'utf-8') as file:
         events = json.loads(file.read())
         for event in events[name]:
             if event['Luokka'] == 'Lainat':

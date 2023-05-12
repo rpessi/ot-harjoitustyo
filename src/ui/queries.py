@@ -10,7 +10,7 @@ from rich.prompt import Prompt
 
 def choose_offset_account(self:TKService):
     """Pyytää käyttäjää luokittelemaan tilitapahtumat
-    
+
         Args: TKService()-instanssi
     """
     console = Console()
@@ -64,8 +64,8 @@ def search_events_by_name():
     name = Prompt.ask(" Valintasi ", choices = accounts)
     key = "Nimi"
     while True:
-        console.print(f" Valittu tili: {name} \n", style = 'blue')
-        console.print(" Anna tapahtuman nimi (tai sen alku), jolla haluat etsiä.", style= 'blue')
+        console.print(f" Valittu tili: {name} \n", style = 'deep_sky_blue4')
+        console.print(" Anna tapahtuman nimi (tai sen alku), jolla haluat etsiä.", style= 'deep_sky_blue4')
         value = Prompt.ask(" Tapahtuman nimi: ")
         rfj(name, key, value)
         next_choice = Prompt.ask(" Valitse: Uusi haku samalta tililtä (1) tai Takaisin päävalikkoon (2): ")
