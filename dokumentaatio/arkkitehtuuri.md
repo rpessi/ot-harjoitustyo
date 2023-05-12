@@ -14,10 +14,12 @@ pysyväistallennuksen kerros saa helposti tallennukseen tarvittavat tiedot.
   classDiagram
       class TKService{
           name
-	  money_in
+	  	  money_in
           money_out
           offset_account_in
           offset_account_out
+          self.loans
+          self.interests
       }
 ```	
 
@@ -31,12 +33,9 @@ ohjelman pysyväistallennuksesta vastaavat toiminnot.
 
 ## Päätoiminnallisuus
 
-Ohjelmassa tällä hetkellä olevat toiminnot ovat tiedoston lisääminen, kassavirtalaskelman tulostus, tuloslaskelman tulostus, tilitietojen
-haku ja tilien yhdistäminen. Ohjelman käyttö edellyttää aluksi tilitiedoston lisäämistä. Ohjelma pyytää käyttäjää luokittelemaan tilitapahtumat
-ja tämän jälkeen tilitiedot tallennetaan pysyväismuistiin. Toistaiseksi kassavirtalaskelman ja tuloslaskelman tulostus tapahtuu tilapäisesti
-tallennettujen tietojen varassa. Tilitietojen haku ja tilien yhdistäminen perustuu pysyväisesti tallennettuun tietoon. Tilitietoja voi tällä
-hetkellä hakea tilitapahtuman nimen perusteella. Jos useampia tilejä on tallennettu, näiden tiedot on mahdollista yhdistää. Yhdistämisen
-jälkeen tapahtumahaussa näkyy muiden tilien joukossa tili Yhdistetty, josta voi hakea tilitapahtumia samaan tapaan kuin muiltakin tileiltä.
+Ohjelmassa tällä hetkellä olevat toiminnot ovat S-Pankin ja Nordean tiliotetiedoston lisääminen, tilitapahtumien etsiminen ja raporttien tulostaminen sekä tilien yhdistäminen.
+
+Ohjelman käyttö edellyttää aluksi tilitiedoston lisäämistä. Ohjelma pyytää käyttäjää luokittelemaan tilitapahtumat ja tämän jälkeen tilitiedot tallennetaan pysyväismuistiin. Tilitiedoston tallennuksen jälkeen kaikki toiminnot perustuvat pysyväisesti tallennettuun tietoon. Tilitietoja voi hakea tilitapahtuman nimen perusteella. Tulostettavien raporttien vaihtoehdot ovat tuloslaskelma, kassavirtalaskelma ja muutokset tase-erissä. Jos useampia tilejä on tallennettu, näiden tiedot on mahdollista yhdistää. Yhdistämisen jälkeen yhdistetylle tilille on käytössä samat toiminnot kuin muillekin tileille.
 
 ### Ohjelman käynnistyminen
 
@@ -48,16 +47,18 @@ sequenceDiagram
    participant Repositories
    UI->>User: "Valitse toiminto: "
    User->>UI: "1"
-   UI-->UI: get_file()
+   UI-->UI: get_file("Nordea")
    UI->>User: "Anna tiedosto: "
-   User->>UI: "src/short.csv"
-   UI->>UI: check_file("src/short.csv")
+   User->>UI: "Nordea.csv"
+   UI->>UI: check_file("Nordea.csv", "Nordea")
+   UI->>Repositories: check_file_format("Nordea.csv", "Nordea")
+   Repositories-->UI: True
    UI-->UI: "True"
    UI->>User: "Anna tilille nimi: "
-   User->>UI: "Nordea"
-   UI-->UI: ("src/short.csv", "Nordea")
-   UI->>UI: process_file("src/short.csv", "Nordea")
-   UI->>Service: account = TKService("src/short.csv", "Nordea")
+   User->>UI: "Pekka Python"
+   UI-->UI: ("Nordea.csv", "Pekka Python")
+   UI->>UI: process_file("Nordea.csv", "Pekka Python")
+   UI->>Service: account = TKService("Nordea.csv", "Pekka Python")
    UI->>Service: account.summary(account.path)
    UI->>UI: ui.quiries.choose_offset_account(account)
    UI->>User: kyselee
@@ -84,8 +85,8 @@ sequenceDiagram
    UI.tui->>UI.queries: search_events_by_name()
    UI.queries->>Repositories: get_account_names()
    Repositories-->UI.queries: accounts
-   UI.queries->>User: "Voit etsiä tapahtumia seuraavilta tileiltä: 1: Matti 2: Maija. Valintasi: "
-   User-->UI.queries: "2"
+   UI.queries->>User: "Valitse tili, jolta haluat etsiä tapahtumia. Valintasi (Matti/Maija): "
+   User-->UI.queries: "Maija"
    UI.queries->>User: "Valittu tili: Maija. Anna tapahtuman nimi: "
    User-->UI.queries: "eli"
    UI.queries-->User: "3/2022 Elisa 29.50 \n 4/2022 Elisa 32.50 \n Yhteensä 62.00"
