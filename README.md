@@ -8,7 +8,7 @@ Ohjelmaa voi kokeilla päähakemiston tiedostoilla Nordea.csv ja S-Pankki.csv.
 
 Disclaimer: Käyttöohjetta ei ole päivitetty täysin edellisen releasen jäljiltä vastaamaan kaikkia toimintoja, mutta se kannattaa silti lukea.
 
-[Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/viikko7)
+[Viimeisin release](https://github.com/rpessi/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## Python-versio
 

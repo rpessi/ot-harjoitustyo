@@ -50,4 +50,9 @@
 | 7.5.  | 2,4    | Dokumentaatio   | Docstringiä koodin sekaan |
 | 8.5.  | 7,3    | Sovelluskehitys | Tulostuksen ja käyttöliittymän työstöä |
 | 8.5.  | 0,5    | Sovelluskehitys | Testi tasefunktiolle |
-| Yht.  | 113,6  | |  |
+| 12.5. | 1,2    | Sovelluskehitys | Koodin hinkkausta siistimmäksi |
+| 12.5. | 1,0    | Sovelluskehitys | Lisätty paikkaus estämään ohjelman kaatuminen |
+| 12.5. | 3,4    | Dokumentaatio   | READMEn ja käyttöohjeen päivitys |
+| 12.5. | 2,0    | Dokumentaatio   | Testausdokumentti |
+| 12.5. | 1,1    | Dokumentaatio   | Vaatimusmäärittely ja arkkitehtuurikuvaus |
+| Yht.  | 124,2  | |  |
