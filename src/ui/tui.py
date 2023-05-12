@@ -5,7 +5,7 @@ import cowsay
 import ui.queries
 from ui.reports import print_success
 import repositories.save_data
-from repositories.save_data import get_account_names, convert_from_s_pankki
+from repositories.save_data import get_account_names, convert_from_s_pankki, check_file_format
 from rich.console import Console
 from rich.prompt import Prompt
 
@@ -17,7 +17,7 @@ def get_file(file_type: str):
     """
     while True:
         file = input( " Anna csv-tiedoston nimi ja polku: ")
-        if check_file(file):
+        if check_file(file, file_type):
             name = input(" Anna tilin nimi: ")
             if file_type == "Nordea":
                 newfile = file
@@ -29,17 +29,21 @@ def get_file(file_type: str):
             print(" Tiedostoa ei löydy tai se ei ole csv-tiedosto.")
     return((newfile, name))
 
-def check_file(file:str):
+def check_file(file:str, file_type:str):
     """Tarkistaa, että käyttäjän antama tiedosto on olemassa ja .csv-päätteinen
 
     Returns:
         True, jos tiedosto löytyy ja sillä on .csv -pääte, muussa tapauksessa False"""
+    c = Console()
     try:
         with open(file) as file_2:
             file_2.read()
     except:
         return False
     if file[-4:] != ".csv":
+        return False
+    if not check_file_format(file, file_type):
+        c.print(" Tiedoston sisältö vaikuttaa vääränlaiselta.", style = 'bold red')
         return False
     else:
         return True

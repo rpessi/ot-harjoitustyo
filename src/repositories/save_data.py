@@ -194,6 +194,34 @@ def convert_from_s_pankki(file:str):
         writefile.writelines(new_lines)
     return "NC.csv"
 
+def check_file_format(file:str, file_type:str):
+    """Toiminto, joka tarkistaa, että käyttäjän antamassa tiedostossa on oikeanlaista tietoa
+
+        Args:
+
+            file: Tarkistettava tiedosto
+            file_type: Pankki, jonka tiliote tarkistetaan
+
+        Returns:
+
+            True, jos tiliote läpäisee tarkistuksen. Muussa tapauksessa False.
+    """
+    with open(file, "rt", encoding = "utf_8") as readfile:
+        lines = readfile.readlines()
+        line = lines[1]
+        line = line.split(";")
+        if file_type == "Nordea":
+            try:
+                amount = float(line[1].replace(",", "."))
+            except ValueError:
+                return False
+        if file_type == "S-Pankki":
+            try:
+                amount = float(line[2].replace(",", ".").replace("+", ""))
+            except ValueError:
+                return False
+        return True
+
 def create_cash_flow_report(name:str):
     """Toiminto, joka luo kassavirtaraportin tilitietojen JSON-tallennetusta muodosta
 
