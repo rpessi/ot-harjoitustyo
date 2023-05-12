@@ -2,7 +2,7 @@
 
 Ohjelman tarkoitus on koota yhteenveto käyttäjän antamasta tiliotteesta. Ohjelmaa voi käyttää myös tietojen yhdistelyyn useammalta
 eri tililtä. Ohjelma on tarkoitettu yhdelle käyttäjälle, mutta toki siihen voi tallentaa kahdenkin ihmisen tilitiedot, jos halutaan
-saada kokonaiskuva perheen taloudesta.
+saada kokonaiskuva perheen taloudesta.Ohjelma pystyy käsittelemään Nordean ja S-Pankin tiliotteita.
 
 Ohjelmaa voi kokeilla päähakemiston tiedostoilla Nordea.csv ja S-Pankki.csv.
 
@@ -17,7 +17,7 @@ esiintyä ongelmia.
 
 ## Dokumentaatio
 
-- [Alustava vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+- [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 - [Käyttöohje](./dokumentaatio/kayttoohje.md)
 - [Changelog](./dokumentaatio/changelog.md)
@@ -31,11 +31,25 @@ esiintyä ongelmia.
 poetry install
 ```
 
-2. Käynnistä sovellus komennolla:
+2. Sovelluksen voi käynnistää komennolla:
 
 ```bash
 poetry run invoke start
 ```
+
+Valitettavasti tämän käynnistystavan kanssa esiintyy jostain syystä tulostuksessa ongelmia. Taulukot tulostuvat oikein, kun käynnistät
+ohjelman seuraavilla komennoilla:
+
+```bash
+poetry shell
+```
+
+```bash
+poetry run python3 src/index.py
+```
+
+Kaikki ylläolevat komennot suoritetaan siinä hakemistossa, mihin ohjelma on ladattu. 
+
 
 ## Komentorivitoiminnot
 
