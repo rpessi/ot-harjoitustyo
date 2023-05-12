@@ -8,6 +8,7 @@ import repositories.save_data
 from repositories.save_data import get_account_names, convert_from_s_pankki, check_file_format
 from rich.console import Console
 from rich.prompt import Prompt
+import os
 
 def get_file(file_type: str):
     """Pyytää käyttäjältä tallennettavan tiedoston ja pyytää käyttäjää antamaan tilille nimen
@@ -106,4 +107,6 @@ def run():
             repositories.save_data.combine_to_json(combined, "Yhdistetty")
             print_success("Kaikkien tilien tapahtumat koottu tilille Yhdistetty.")
         elif choice == "6":
+            if os.path.exists("NC.csv"):
+                os.remove("NC.csv")
             exit()
